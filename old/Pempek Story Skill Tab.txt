@@ -1,0 +1,16 @@
+Skill Tab
+----------------------
+1. Pempek/Orang 
+2. Harga Pempek
+3. Customer Respawning Time
+4. Waktu Akhir Pekan
+
+Nama Skill Tab
+----------------------
+1. Kursus Memasak Pempek -> HP
+2. Belajar Ilmu Pemasaran ->CRT
+3. Belajar Desain Grafis -> CRT
+4. Aktif Dikegiatan UKM -> WAP
+5. Kursus Membuat Cuko -> HP
+6. Pelayanan Yang Baik -> WAP
+7. Belajar Ilmu Penjualan -> P/O

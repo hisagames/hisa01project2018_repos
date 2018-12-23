@@ -1,0 +1,21 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CoinManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\SkillTabManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SkillTabScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PempekPerCustomerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PempekPriceManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuTabManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameBaseManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameDataManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameTimeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CoinManager.cs" Line="21" Column="5" />
+      <File FileName="Assets\Scripts\FlyCoinAnimated.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
