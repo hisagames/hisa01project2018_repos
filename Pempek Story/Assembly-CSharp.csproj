@@ -64,6 +64,7 @@
      <Compile Include="Assets\Game Assets\Scripts\GameBaseManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\GameDataManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\GameTimeManager.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\JumpToOtherScene.cs" />
      <Compile Include="Assets\Game Assets\Scripts\MenuTabManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\NPCEmoticon.cs" />
      <Compile Include="Assets\Game Assets\Scripts\NPCMovement.cs" />
@@ -74,22 +75,23 @@
      <Compile Include="Assets\Game Assets\Scripts\QueueManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\SkillTabManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\SkillTabScript.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\TransitionManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\UIManager.cs" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/Pempek Story/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Pempek Story/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/Pempek Story/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Pempek Story/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -272,7 +274,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Unity.Locator.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>D:/Pempek Story/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -296,16 +298,16 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>D:/Pempek Story/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="DOTween43">
- <HintPath>D:/Pempek Story/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
  </Reference>
  <Reference Include="DOTween46">
- <HintPath>D:/Pempek Story/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
  </Reference>
  <Reference Include="DOTween50">
- <HintPath>D:/Pempek Story/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
+ <HintPath>D:/Hisa Games/Pempek Story Project/Pempek Story/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/lutfi/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

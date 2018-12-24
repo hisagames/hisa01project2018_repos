@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         if (col.tag == "SellerTableZone")
         {
             playerInSellerTableZone = true;
-            if(!inSellerMode)
+            if (!inSellerMode)
                 UIManager.instance.ShowGameUI(0);
         }
     }
