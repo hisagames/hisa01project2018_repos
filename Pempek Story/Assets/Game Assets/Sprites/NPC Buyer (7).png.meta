@@ -34,6 +34,38 @@ TextureImporter:
     21300058: NPC Buyer Sprite (7)_29
     21300060: NPC Buyer Sprite (7)_30
     21300062: NPC Buyer Sprite (7)_31
+    21300064: NPC Buyer (7)_0
+    21300066: NPC Buyer (7)_1
+    21300068: NPC Buyer (7)_2
+    21300070: NPC Buyer (7)_3
+    21300072: NPC Buyer (7)_4
+    21300074: NPC Buyer (7)_5
+    21300076: NPC Buyer (7)_6
+    21300078: NPC Buyer (7)_7
+    21300080: NPC Buyer (7)_8
+    21300082: NPC Buyer (7)_9
+    21300084: NPC Buyer (7)_10
+    21300086: NPC Buyer (7)_11
+    21300088: NPC Buyer (7)_12
+    21300090: NPC Buyer (7)_13
+    21300092: NPC Buyer (7)_14
+    21300094: NPC Buyer (7)_15
+    21300096: NPC Buyer (7)_16
+    21300098: NPC Buyer (7)_17
+    21300100: NPC Buyer (7)_18
+    21300102: NPC Buyer (7)_19
+    21300104: NPC Buyer (7)_20
+    21300106: NPC Buyer (7)_21
+    21300108: NPC Buyer (7)_22
+    21300110: NPC Buyer (7)_23
+    21300112: NPC Buyer (7)_24
+    21300114: NPC Buyer (7)_25
+    21300116: NPC Buyer (7)_26
+    21300118: NPC Buyer (7)_27
+    21300120: NPC Buyer (7)_28
+    21300122: NPC Buyer (7)_29
+    21300124: NPC Buyer (7)_30
+    21300126: NPC Buyer (7)_31
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -149,641 +181,641 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_0
+      name: NPC Buyer (7)_0
       rect:
         serializedVersion: 2
         x: 59
         y: 1955
         width: 74
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5038c10fc699f38488c5dfdfe2fa1ba3
+      spriteID: e639d9e0d505097458af15ff5f1c70e0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_1
+      name: NPC Buyer (7)_1
       rect:
         serializedVersion: 2
         x: 251
         y: 1955
         width: 74
         height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17ac36f9da8dfca4b84e709c1354d5f1
+      spriteID: 41ce9c4f868e4ce43bd0e3d34679fd26
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_2
+      name: NPC Buyer (7)_2
       rect:
         serializedVersion: 2
         x: 443
         y: 1955
         width: 74
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f89b79421e77d2438cc53e68d1483f8
+      spriteID: 7913fe6c6932abf4fb381b57489736a2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_3
+      name: NPC Buyer (7)_3
       rect:
         serializedVersion: 2
         x: 59
         y: 1763
         width: 74
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92cb60068407caa40bd10f824eea0319
+      spriteID: 38c97547edc4efe44b69361a07ecd4c8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_4
+      name: NPC Buyer (7)_4
       rect:
         serializedVersion: 2
         x: 251
         y: 1763
         width: 74
         height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52f9f852e056a204d9ccbd5c44c46b04
+      spriteID: 9694420446b3e5e4981ef062a824b317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_5
+      name: NPC Buyer (7)_5
       rect:
         serializedVersion: 2
         x: 443
         y: 1763
         width: 74
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c860a1e11af30ef4389b9994e4aea525
+      spriteID: 35b3c08f4219e954fb413b89b6760a29
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_6
+      name: NPC Buyer (7)_6
       rect:
         serializedVersion: 2
         x: 59
         y: 1568
         width: 74
         height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcb8721f2eb55f04690884d08b63f770
+      spriteID: 389f7a278e3164d42b99282c60a7947e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_7
+      name: NPC Buyer (7)_7
       rect:
         serializedVersion: 2
         x: 251
         y: 1571
         width: 74
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b0f2186b4ac1704b8b5d1e1fd335a62
+      spriteID: 43a3b4b00f96bb246ae24f793d634c1b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_8
+      name: NPC Buyer (7)_8
       rect:
         serializedVersion: 2
         x: 443
         y: 1568
         width: 74
         height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e27083deb87cef747a190e2ef5f55a44
+      spriteID: 7b4b8a1a7d5e315449a905f629276bd1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_9
+      name: NPC Buyer (7)_9
       rect:
         serializedVersion: 2
         x: 59
         y: 1376
         width: 74
         height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ba751395edd0e74ca2a5f7fbe3f5067
+      spriteID: 875260d19c867984e81a249c250ae415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_10
+      name: NPC Buyer (7)_10
       rect:
         serializedVersion: 2
         x: 251
         y: 1379
         width: 74
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 078ad46cc1a765141bab661158ecad1d
+      spriteID: 4df58e3f5e239164bbb92bb42da47bab
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_11
+      name: NPC Buyer (7)_11
       rect:
         serializedVersion: 2
         x: 443
         y: 1376
         width: 74
         height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 401fb8e3091893b46b08bc593de23b34
+      spriteID: b54a853b1cf792746b881bd6d9b0cfd4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_12
+      name: NPC Buyer (7)_12
       rect:
         serializedVersion: 2
         x: 62
         y: 1186
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e574cd95a2875304cbc876deccba0c6c
+      spriteID: 0097ca326c9b479489bb4526015ada1d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_13
+      name: NPC Buyer (7)_13
       rect:
         serializedVersion: 2
         x: 254
         y: 1186
         width: 71
         height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d2b35a85e6fb594d914191e5e4c085b
+      spriteID: 4af5da3eeeaea0544a3a55ed157ee9f6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_14
+      name: NPC Buyer (7)_14
       rect:
         serializedVersion: 2
         x: 446
         y: 1186
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e98dda9f82b30245adbefa11208cc07
+      spriteID: 89421cb6bcbb5fc4f8873280aea9d7fe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_15
+      name: NPC Buyer (7)_15
       rect:
         serializedVersion: 2
         x: 59
         y: 995
         width: 71
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 182fbf776b79e48458b4d7627cebeb36
+      spriteID: c2e5b0d41f0dad944a61af0262431434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_16
+      name: NPC Buyer (7)_16
       rect:
         serializedVersion: 2
         x: 251
         y: 995
         width: 71
         height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bf70754aed516d40b399d9488266d4d
+      spriteID: 2fa09085acb8a294e8bd6aa36022f04f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_17
+      name: NPC Buyer (7)_17
       rect:
         serializedVersion: 2
         x: 443
         y: 995
         width: 71
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 947a8e89a17a838428a7319b245fd18f
+      spriteID: 87920a71bfad943488e2a91bac43c7d3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_18
+      name: NPC Buyer (7)_18
       rect:
         serializedVersion: 2
         x: 62
         y: 803
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4cd15a866585f4cbe867d63a717c30
+      spriteID: 1068f7691364b164ca13bc832c01b9f4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_19
+      name: NPC Buyer (7)_19
       rect:
         serializedVersion: 2
         x: 254
         y: 803
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8365e78e29f7be4db00f386249aaf3e
+      spriteID: d8d103b78de3d2e4e9ed2940d73fc740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_20
+      name: NPC Buyer (7)_20
       rect:
         serializedVersion: 2
         x: 446
         y: 803
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63afbe856e824f749ae558681826fc72
+      spriteID: 3303e6e73fedd304f9658e2e8e5cea98
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_21
+      name: NPC Buyer (7)_21
       rect:
         serializedVersion: 2
         x: 59
         y: 611
         width: 71
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f1d1c8b7e67dbd4a9bc6fad1b8a176a
+      spriteID: 59cce0e2a1da9dc4ab0098b1fc6390fe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_22
+      name: NPC Buyer (7)_22
       rect:
         serializedVersion: 2
         x: 251
         y: 614
         width: 71
         height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27dae64c23925ff409166e448488ec2d
+      spriteID: e4fb7550d85a02c4c8348f039024929f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_23
+      name: NPC Buyer (7)_23
       rect:
         serializedVersion: 2
         x: 443
         y: 611
         width: 71
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fb3467e381eed84d97fb170741a154f
+      spriteID: fed9c430ea6c2b14da43033b7d3add46
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_24
+      name: NPC Buyer (7)_24
       rect:
         serializedVersion: 2
         x: 62
         y: 419
         width: 71
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7797bc35c97cb348a97385c17df1748
+      spriteID: ffda37c824bec1242bed5567db409352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_25
+      name: NPC Buyer (7)_25
       rect:
         serializedVersion: 2
         x: 254
         y: 419
         width: 71
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd5b5825ec8bafa4fb313496d0813e1a
+      spriteID: d05c5d60619ee364c9cc8625e0e79aee
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_26
+      name: NPC Buyer (7)_26
       rect:
         serializedVersion: 2
         x: 446
         y: 419
         width: 71
         height: 122
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99e0e61d9dfa06143b1745947f2e9dae
+      spriteID: ee7c3f48c06f59a4b9ed3fbd4d9e7422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_27
+      name: NPC Buyer (7)_27
       rect:
         serializedVersion: 2
         x: 59
         y: 226
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b95144a518bbce0409ca7a4e667e0e16
+      spriteID: 1744d0fa429f27f448c2275bb057308a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_28
+      name: NPC Buyer (7)_28
       rect:
         serializedVersion: 2
         x: 251
         y: 226
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3441112da2365d4abdf3d3e7699bfaa
+      spriteID: 2035b0b86d7dbd64ab2b5b3b4c7e44dd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_29
+      name: NPC Buyer (7)_29
       rect:
         serializedVersion: 2
         x: 443
         y: 226
         width: 71
         height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39bb3b9c0e17e39469113cde29b16419
+      spriteID: b54abecd21078ba4c9ef018c1ba7b70a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_30
+      name: NPC Buyer (7)_30
       rect:
         serializedVersion: 2
         x: 59
         y: 35
         width: 74
         height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d000b857a107d1f46a90a7b84382f690
+      spriteID: 9ac81c810b0e0a140895080aebe8529f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC Buyer Sprite (7)_31
+      name: NPC Buyer (7)_31
       rect:
         serializedVersion: 2
         x: 275
         y: 86
         width: 26
         height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aed860b0ef2ee5949964aa86136344c8
+      spriteID: 66ac5b5d4d29d8b43823fff86d593de5
       vertices: []
       indices: 
       edges: []

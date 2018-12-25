@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     Animator animator;
 
+    [SerializeField]
+    float pivotDifferentY;
+
     void Start () {
         animator.SetInteger("State", 0); //state 0 idle animation
     }
@@ -27,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void CharacterMovement()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y + pivotDifferentY);
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.DOMoveX(transform.position.x - speed.x, Time.deltaTime, false);
