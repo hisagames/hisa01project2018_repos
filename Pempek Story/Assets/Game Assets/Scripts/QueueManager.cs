@@ -18,6 +18,20 @@ public class QueueManager : MonoBehaviour {
         queueCustomer = new GameObject[queueZone.Length];
     }
 
+    public bool isQueueEmpty()
+    {
+        bool temp = true;
+        for (int i = 0; i < queueCustomer.Length; i++)
+        {
+            if (queueCustomer[i] != null)
+            {
+                temp = false;
+                break;
+            }
+        }
+        return temp;
+    }
+
     public int isThereEmptyQueue()
     {
         for (int i = 0; i < queueCustomer.Length; i++)

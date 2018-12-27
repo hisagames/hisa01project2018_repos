@@ -30,6 +30,12 @@ public class PlayerMovement : MonoBehaviour {
 
     void CharacterMovement()
     {
+        if (animator.GetInteger("State") == 5 || animator.GetInteger("State") == 6 || animator.GetInteger("State") == 7)
+        {
+            animator.Play("Girl1Idle (0)"); 
+            animator.SetInteger("State", 0); //state 0 idle animation
+        }
+
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y + pivotDifferentY);
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -44,12 +50,12 @@ public class PlayerMovement : MonoBehaviour {
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.DOMoveY(transform.position.y + speed.y, Time.deltaTime, false);
-            animator.SetInteger("State", 4); //state 2 walk to left animation
+            animator.SetInteger("State", 4); //state 4 walk to up animation
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.DOMoveY(transform.position.y - speed.y, Time.deltaTime, false);
-            animator.SetInteger("State", 3); //state 1 walk to right animation
+            animator.SetInteger("State", 3); //state 3 walk to down animation
         }
         else if(Input.GetKeyUp(KeyCode.LeftArrow)|| Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow))
         {
@@ -59,6 +65,17 @@ public class PlayerMovement : MonoBehaviour {
 
     void CharacterSellingThings()
     {
-        transform.position = new Vector3(-4.75f, 2f, transform.position.y);
+        if (QueueManager.instance.isQueueEmpty())
+        {
+            transform.position = new Vector3(-4.75f, 2f, transform.position.y);
+            animator.SetInteger("State", 5); //state 5 greet animation
+            animator.Play("Girl1Greet (5)");
+        }
+        else
+        {
+            transform.position = new Vector3(-4.75f, 2f, transform.position.y);
+            animator.SetInteger("State", 7); //state 5 greet animation
+            animator.Play("Girl1GivingFood (7)");
+        }
     }
 }
