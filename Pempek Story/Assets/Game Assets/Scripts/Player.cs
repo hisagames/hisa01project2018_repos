@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     public bool inSellerMode;
 
+    public int state;
+
     void Awake()
     {
         instance = this;

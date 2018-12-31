@@ -74,8 +74,20 @@ public class PlayerMovement : MonoBehaviour {
         else
         {
             transform.position = new Vector3(-4.75f, 2f, transform.position.y);
-            animator.SetInteger("State", 7); //state 5 greet animation
-            animator.Play("Girl1GivingFood (7)");
+            if (Player.instance.state == 6) {
+                animator.SetInteger("State", 6); 
+                animator.Play("Girl1Cooking (6)");
+            }
+            else if (Player.instance.state == 7)
+            {
+                animator.SetInteger("State", 7); 
+                animator.Play("Girl1GivingFood (7)");
+            }
+            else if (Player.instance.state == 0)
+            {
+                animator.Play("Girl1Idle (0)");
+                animator.SetInteger("State", 0); //state 0 idle animation
+            }
         }
     }
 }

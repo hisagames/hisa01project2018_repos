@@ -162,6 +162,7 @@ public class NPCMovement : MonoBehaviour
                             npcState = NPCState.inQueueZone;
                             animator.SetInteger("State", 0); //state 0 idle animation
                             npcEmoticon.changeEmoticon(NPCEmoticon.Type.happy);
+                            Player.instance.state = 6;
                         }
                         else
                         {
@@ -198,6 +199,7 @@ public class NPCMovement : MonoBehaviour
                             npcState = NPCState.buyingThings;
                             //QueueManager.instance.queueCustomer[queueNumber] = null;
                             QueueManager.instance.queueTransition();
+                            Player.instance.state = 7;
                             queueNumber = -1;
                         }
                     }
@@ -208,6 +210,7 @@ public class NPCMovement : MonoBehaviour
                         //Debug.Log("Switch to In Already Buy Things...");
                         npcState = NPCState.alreadyBuyThings;
                         npcEmoticon.changeEmoticon(NPCEmoticon.Type.love);
+                        //Player.instance.state = 0;
                     }
                     break;
                 case NPCState.alreadyBuyThings:
