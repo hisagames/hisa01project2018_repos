@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\TimeManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Game Assets\Scripts\CoinManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\CustomerMovement.cs" />
