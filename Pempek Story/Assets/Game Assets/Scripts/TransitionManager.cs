@@ -12,6 +12,7 @@ public class TransitionManager : MonoBehaviour
         if (col.tag == "Player")
         {
             // + transisi animation
+            TimeManager.instance.addTransitionMinutes();
             JumpToOtherScene.quickGoToScene(TargetScene);
         }
     }
