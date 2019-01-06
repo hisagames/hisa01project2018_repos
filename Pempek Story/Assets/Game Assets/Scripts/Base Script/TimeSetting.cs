@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TimeSetting : MonoBehaviour
 {
-    public static float timeSpeed = 0.5f; //every time speed, time in game will add Normal minutes
+    public static float timeSpeed = 10f; //every time speed, time in game will add Normal minutes
 
     public static int maxMinutes = 60; //minutes
     public static int maxHours = 24; //hours

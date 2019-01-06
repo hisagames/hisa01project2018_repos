@@ -55,6 +55,10 @@
   <ItemGroup>
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\Player.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\PlayerMovement.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\StopCollider.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\StopColliderManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\TimeManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\TimeSetting.cs" />
      <Compile Include="Assets\Game Assets\Scripts\CameraMovement.cs" />
@@ -72,8 +76,6 @@
      <Compile Include="Assets\Game Assets\Scripts\NPCMovement.cs" />
      <Compile Include="Assets\Game Assets\Scripts\PempekPerCustomerManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\PempekPriceManager.cs" />
-     <Compile Include="Assets\Game Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Game Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Game Assets\Scripts\QueueManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\SkillTabManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\SkillTabScript.cs" />
