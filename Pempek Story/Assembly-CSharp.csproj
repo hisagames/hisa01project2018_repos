@@ -57,6 +57,8 @@
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\Player.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\PlayerMovement.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\PopupNote.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\PopupNoteManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\StopCollider.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\StopColliderManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\TimeManager.cs" />
