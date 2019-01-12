@@ -3,7 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
+    public static PlayerMovement instance;
+
+    [System.Serializable]
+    public enum MovementState
+    {
+        idle,
+        walkToRight,
+        walkToLeft,
+        walkToDown,
+        walkToUp
+    }
+
+    public MovementState movementState;
 
     public Vector2 speed;
     [SerializeField]
@@ -12,8 +26,15 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     float pivotDifferentY;
 
-    void Start () {
-        animator.SetInteger("State", 0); //state 0 idle animation
+    void Awake()
+    {
+        instance = this;
+    }
+
+    void Start()
+    {
+        movementState = MovementState.idle;
+        animator.SetInteger("State", (int)movementState); //state 0 idle animation
     }
 	
 	void Update () {
@@ -32,35 +53,34 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (animator.GetInteger("State") == 5 || animator.GetInteger("State") == 6 || animator.GetInteger("State") == 7)
         {
+            //still hardcode in here......................
             animator.Play("Girl1Idle (0)"); 
             animator.SetInteger("State", 0); //state 0 idle animation
         }
 
+        //Update z position depend on yposition
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y + pivotDifferentY);
-        if (Input.GetKey(KeyCode.LeftArrow) && !StopColliderManager.instance.stopLeftColActive)
+
+        switch (movementState)
         {
-            transform.DOMoveX(transform.position.x - speed.x, Time.deltaTime, false);
-            animator.SetInteger("State", 2); //state 2 walk to left animation
+            case MovementState.walkToLeft:
+                if (!StopColliderManager.instance.stopLeftColActive)
+                    transform.DOMoveX(transform.position.x - speed.x, Time.deltaTime, false);
+                break;
+            case MovementState.walkToRight:
+                if (!StopColliderManager.instance.stopRightColActive)
+                    transform.DOMoveX(transform.position.x + speed.x, Time.deltaTime, false);
+                break;
+            case MovementState.walkToUp:
+                if (!StopColliderManager.instance.stopUpColActive)
+                    transform.DOMoveY(transform.position.y + speed.y, Time.deltaTime, false);
+                break;
+            case MovementState.walkToDown:
+                if (!StopColliderManager.instance.stopDownColActive)
+                    transform.DOMoveY(transform.position.y - speed.y, Time.deltaTime, false);
+                break;
         }
-        else if (Input.GetKey(KeyCode.RightArrow) && !StopColliderManager.instance.stopRightColActive)
-        {
-            transform.DOMoveX(transform.position.x + speed.x, Time.deltaTime, false);
-            animator.SetInteger("State", 1); //state 1 walk to right animation
-        }
-        else if (Input.GetKey(KeyCode.UpArrow) && !StopColliderManager.instance.stopUpColActive)
-        {
-            transform.DOMoveY(transform.position.y + speed.y, Time.deltaTime, false);
-            animator.SetInteger("State", 4); //state 4 walk to up animation
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) && !StopColliderManager.instance.stopDownColActive)
-        {
-            transform.DOMoveY(transform.position.y - speed.y, Time.deltaTime, false);
-            animator.SetInteger("State", 3); //state 3 walk to down animation
-        }
-        else if(Input.GetKeyUp(KeyCode.LeftArrow)|| Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            animator.SetInteger("State", 0); //state 0 idle animation
-        }
+        animator.SetInteger("State", (int)movementState);
     }
 
     void CharacterSellingThings()
