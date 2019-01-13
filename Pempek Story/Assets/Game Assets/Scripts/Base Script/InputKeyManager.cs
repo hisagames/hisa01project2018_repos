@@ -71,11 +71,16 @@ public class InputKeyManager : MonoBehaviour
                 {
                     BagManager.instance.UpdateBagPointer("down");
                 }
+                else if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    BagManager.instance.UpdateBagChoosenPointer(true);
+                }
 
                 if (Input.GetKeyDown(KeyCode.X))
                 {
-                    BagManager.instance.changeBagOpenState(false);
-                    inputState = InputState.None;
+                    bool temp = BagManager.instance.changeBagOpenState(false);
+                    if(temp)
+                        inputState = InputState.None;
                 }
                 break;
         }

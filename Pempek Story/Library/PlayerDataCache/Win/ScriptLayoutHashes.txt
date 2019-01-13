@@ -5,6 +5,7 @@ SceneListBegin?
 Assets/Game Assets/Scenes/HomeIndoor01.unity
 Assets/Game Assets/Scenes/Street04.unity
 SceneListEnd?
+7c8acbab413abaa2d3d4ad101d67fae5 Assembly-CSharp.dll:.ItemToolSetting
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -245,7 +246,7 @@ e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTool
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 837ae46cae41da62999b1ed9b760f53b DOTween.dll:DG.Tweening.Core.DOTweenComponent
 58b003d0b6ce15e57078a816e2140b4b DOTween.dll:DG.Tweening.Core.DOTweenSettings
-0c3aabc0ba3b415bcc3afb1142b40c53 Assembly-CSharp.dll:.BagManager
+d5082e41bb89992251a694d7cb2a3dae Assembly-CSharp.dll:.BagManager
 d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule

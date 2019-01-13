@@ -15,6 +15,14 @@ public class BagManager : MonoBehaviour
 
     int selectedObjectId;
 
+    [SerializeField]
+    GameObject bagChoosenPointer;
+
+    [SerializeField]
+    GameObject choosenObject;
+
+    int choosenObjectId;
+
     void Awake()
     {
         instance = this;
@@ -29,15 +37,34 @@ public class BagManager : MonoBehaviour
         isBagOpen = false;
         changeBagOpenState(false);
         UpdateBagPointer("initiate");
+        choosenObjectId = -1;
     }
 
-    public void changeBagOpenState(bool state)
+    public bool changeBagOpenState(bool state)
     {
         if (isBagOpen != state)
         {
-            isBagOpen = state;
-            BagMenu.SetActive(isBagOpen);
+            if (state)
+            {
+                isBagOpen = state;
+                BagMenu.SetActive(isBagOpen);
+                return true;
+            }
+            else
+            {
+                if(!bagChoosenPointer.activeSelf)
+                {
+                    isBagOpen = state;
+                    BagMenu.SetActive(isBagOpen);
+                    return true;
+                }
+                else
+                {
+                    UpdateBagChoosenPointer(false);
+                }
+            }
         }
+        return false;
     }
 
     public void UpdateBagPointer(string moveTo)
@@ -61,6 +88,23 @@ public class BagManager : MonoBehaviour
         selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
         bagPointer.transform.position =
             new Vector3(selectedObject.transform.position.x, selectedObject.transform.position.y, bagPointer.transform.position.z);
+    }
+
+    public void UpdateBagChoosenPointer(bool state)
+    {
+        bagChoosenPointer.SetActive(state);
+        if (state)
+        {
+            choosenObject = selectedObject;
+            choosenObjectId = choosenObject.GetComponent<ItemToolSetting>().id;
+            bagChoosenPointer.transform.position =
+                new Vector3(choosenObject.transform.position.x, choosenObject.transform.position.y, bagChoosenPointer.transform.position.z);
+        }
+        else
+        {
+            choosenObject = null;
+            choosenObjectId = -1;
+        }
     }
 
     void Update()
