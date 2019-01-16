@@ -56,6 +56,7 @@
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\BagManager.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\BagSetting.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\InputKeyManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ItemToolSetting.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\Player.cs" />

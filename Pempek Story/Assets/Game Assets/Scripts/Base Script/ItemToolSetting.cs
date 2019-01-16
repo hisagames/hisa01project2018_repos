@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class ItemToolSetting : MonoBehaviour
 {
+    public int propertiesId; //like bag id
     public int id;
-
-    [SerializeField]
-    Image objectIcon;
-
-    [SerializeField]
-    string objectName;
-
-    [SerializeField]
-    string objectDescription;
+    public Image objectIcon;
+    public string objectName;
+    public string objectDescription;
+    public string type;
 
     public GameObject leftNeighbour;
     public GameObject rightNeighbour;
