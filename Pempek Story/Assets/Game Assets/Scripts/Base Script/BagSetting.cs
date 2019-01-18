@@ -36,28 +36,6 @@ public class BagSetting : MonoBehaviour
 
     void Start()
     {
-        /*
-        for (int i = 0; i < maxActiveTools; i++)
-        {
-            PlayerPrefs.SetInt("activeToolsId"+i, -1);
-        }
-        for (int i = 0; i < maxActiveItems; i++)
-        {
-            PlayerPrefs.SetInt("activeItemsId" + i, -1);
-        }*/
-        /*
-        PlayerPrefs.SetInt("activeToolsId0", 1);
-        PlayerPrefs.SetInt("activeToolsId1", 2);
-        PlayerPrefs.SetInt("activeToolsId2", 0);
-        PlayerPrefs.SetInt("activeToolsId3", 1);
-        PlayerPrefs.SetInt("activeToolsId5", 2);
-
-
-        PlayerPrefs.SetInt("activeItemsId0", 1);
-        PlayerPrefs.SetInt("activeItemsId1", 0);
-        PlayerPrefs.SetInt("activeItemsId3", 1);
-        PlayerPrefs.SetInt("activeItemsId4", 2);
-        */
         initiateActiveTools();
         initiateActiveItems();
     }

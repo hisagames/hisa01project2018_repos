@@ -135,21 +135,25 @@ public class BagManager : MonoBehaviour
         string tempObjectDescription = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
         Sprite tempSprite = selectedObject.GetComponent<Image>().sprite;
 
-        PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "Id" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
-            choosenObject.GetComponent<ItemToolSetting>().id);
         selectedObject.GetComponent<ItemToolSetting>().id = choosenObject.GetComponent<ItemToolSetting>().id;
         selectedObject.GetComponent<ItemToolSetting>().objectIcon = choosenObject.GetComponent<ItemToolSetting>().objectIcon;
         selectedObject.GetComponent<ItemToolSetting>().objectName = choosenObject.GetComponent<ItemToolSetting>().objectName;
         selectedObject.GetComponent<ItemToolSetting>().objectDescription = choosenObject.GetComponent<ItemToolSetting>().objectDescription;
         selectedObject.GetComponent<Image>().sprite = choosenObject.GetComponent<Image>().sprite;
-
-        PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "Id" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
-            tempId);
+        
+        
         choosenObject.GetComponent<ItemToolSetting>().id = tempId;
         choosenObject.GetComponent<ItemToolSetting>().objectIcon = tempObjectIcon;
         choosenObject.GetComponent<ItemToolSetting>().objectName = tempObjectName;
         choosenObject.GetComponent<ItemToolSetting>().objectDescription = tempObjectDescription;
         choosenObject.GetComponent<Image>().sprite = tempSprite;
+        
+        PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "Id" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
+            choosenObject.GetComponent<ItemToolSetting>().id);
+
+        PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "Id" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
+            selectedObject.GetComponent<ItemToolSetting>().id);
+        PlayerPrefs.Save();
 
         selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
         selectedObjectName.text = selectedObject.GetComponent<ItemToolSetting>().objectName;
