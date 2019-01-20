@@ -7,13 +7,14 @@ public class InputKeyManager : MonoBehaviour
     enum InputState
     {
         None,
-        InBagMenu
+        InBagMenu,
+        InShelfMenu
     }
 
     InputState inputState;
 
     [SerializeField]
-    BagManager bagManager;
+    UIManager bagManager;
 
     void Start()
     {
@@ -51,38 +52,83 @@ public class InputKeyManager : MonoBehaviour
                 #region Go To Other Input State
                 if (Input.GetKeyDown(KeyCode.S))
                 {
-                    BagManager.instance.changeBagOpenState(true);
+                    ToolItemManager.instance.uiState = ToolItemManager.UIState.BagMenu;
+                    ToolItemManager.instance.changeToolItemOpenState(true);
                     inputState = InputState.InBagMenu;
                 }
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //if (intriggerwithshelf)
+                    //{
+                        ToolItemManager.instance.uiState = ToolItemManager.UIState.ShelfMenu;
+                        ToolItemManager.instance.changeToolItemOpenState(true);
+                        inputState = InputState.InShelfMenu;
+                    //}
+                }
                 break;
-                #endregion
+            #endregion
 
             case InputState.InBagMenu:
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    BagManager.instance.UpdateBagPointer("left");
+                    ToolItemManager.instance.UpdateToolItemPointer("left");
                 }
                 else if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    BagManager.instance.UpdateBagPointer("right");
+                    ToolItemManager.instance.UpdateToolItemPointer("right");
                 }
                 else if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    BagManager.instance.UpdateBagPointer("up");
+                    ToolItemManager.instance.UpdateToolItemPointer("up");
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    BagManager.instance.UpdateBagPointer("down");
+                    ToolItemManager.instance.UpdateToolItemPointer("down");
                 }
                 else if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    BagManager.instance.UpdateBagChoosenPointer(true);
+                    ToolItemManager.instance.UpdateToolItemChoosenPointer(true);
                 }
 
                 if (Input.GetKeyDown(KeyCode.X))
                 {
-                    bool temp = BagManager.instance.changeBagOpenState(false);
-                    if(temp)
+                    bool temp = ToolItemManager.instance.changeToolItemOpenState(false);
+                    if (temp)
+                        inputState = InputState.None;
+                }
+                break;
+
+            case InputState.InShelfMenu:
+                //MASIH TERDAPAT 2 TASK YANG PERLU DI FIX KAN
+                //-Saat movement pointer di shelf menu masih mengarah pada object item, fix kan.
+                //-Menu Shelf menu hanya terbuka saat player menekan tombol z sambil trigger pada shelf menu
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    ToolItemManager.instance.UpdateToolItemPointer("left");
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    ToolItemManager.instance.UpdateToolItemPointer("right");
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    ToolItemManager.instance.UpdateToolItemPointer("up");
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    ToolItemManager.instance.UpdateToolItemPointer("down");
+                }
+                else if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    ToolItemManager.instance.UpdateToolItemChoosenPointer(true);
+                }
+
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    bool temp = ToolItemManager.instance.changeToolItemOpenState(false);
+                    if (temp)
                         inputState = InputState.None;
                 }
                 break;

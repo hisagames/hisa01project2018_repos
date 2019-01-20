@@ -17,4 +17,8 @@ public class ItemToolSetting : MonoBehaviour
     public GameObject rightNeighbour;
     public GameObject upNeighbour;
     public GameObject downNeighbour;
+
+    //MASIH TERDAPAT 2 TASK YANG PERLU DI FIX KAN
+    //-Saat movement pointer di shelf menu masih mengarah pada object item, fix kan.
+    //-Menu Shelf menu hanya terbuka saat player menekan tombol z sambil trigger pada shelf menu
 }
