@@ -27,11 +27,13 @@ public class ToolItemSetting : MonoBehaviour
     public ItemData[] itemData;
     int maxActiveTools = 9;
     int maxActiveItems = 9;
-    int maxActiveShelf = 8;
+    int maxActiveShelf = 9;
 
-    public GameObject[] activeTools;
-    public GameObject[] activeItems;
-    public GameObject[] activeShelfTools;
+    public GameObject[] activeTools_BagMenu;
+    public GameObject[] activeItems_BagMenu;
+
+    public GameObject[] activeTools_ShelfMenu;
+    public GameObject[] activeShelfTools_ShelfMenu;
 
     [SerializeField]
     Sprite transparentSprite;
@@ -41,84 +43,111 @@ public class ToolItemSetting : MonoBehaviour
         initiateActiveTools();
         initiateActiveItems();
         initiateActiveShelf();
+        initiateActiveToolsinShelf();
     }
 
-    void initiateActiveTools()
+    public void initiateActiveTools()
     {
         for (int i = 0; i < maxActiveTools; i++)
         {
             int tempId = PlayerPrefs.GetInt("activeToolsId" + i);
             if (tempId >= 0 && tempId < toolData.Length)
             {
-                activeTools[i].GetComponent<ItemToolSetting>().id = tempId;
-                activeTools[i].GetComponent<ItemToolSetting>().objectIcon.sprite = toolData[tempId].objectIcon;
-                activeTools[i].GetComponent<ItemToolSetting>().objectName = toolData[tempId].objectName;
-                activeTools[i].GetComponent<ItemToolSetting>().objectDescription = toolData[tempId].objectDescription;
-                activeTools[i].GetComponent<ItemToolSetting>().type = toolData[tempId].type;
-                activeTools[i].GetComponent<Image>().sprite = toolData[tempId].objectIcon;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().id = tempId;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectIcon.sprite = toolData[tempId].objectIcon;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectName = toolData[tempId].objectName;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = toolData[tempId].objectDescription;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().type = toolData[tempId].type;
+                activeTools_BagMenu[i].GetComponent<Image>().sprite = toolData[tempId].objectIcon;
             }
             else
             {
-                activeTools[i].GetComponent<ItemToolSetting>().id = -1;
-                activeTools[i].GetComponent<ItemToolSetting>().objectIcon = null;
-                activeTools[i].GetComponent<ItemToolSetting>().objectName = "";
-                activeTools[i].GetComponent<ItemToolSetting>().objectDescription = "";
-                activeTools[i].GetComponent<ItemToolSetting>().type = "Tools";
-                activeTools[i].GetComponent<Image>().sprite = transparentSprite;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().id = -1;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectIcon = null;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectName = "";
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().type = "Tools";
+                activeTools_BagMenu[i].GetComponent<Image>().sprite = transparentSprite;
             }
         }
     }
 
-    void initiateActiveItems()
+    public void initiateActiveItems()
     {
         for (int i = 0; i < maxActiveItems; i++)
         {
             int tempId = PlayerPrefs.GetInt("activeItemsId" + i);
             if (tempId >= 0 && tempId < itemData.Length)
             {
-                activeItems[i].GetComponent<ItemToolSetting>().id = tempId;
-                activeItems[i].GetComponent<ItemToolSetting>().objectIcon.sprite = itemData[tempId].objectIcon;
-                activeItems[i].GetComponent<ItemToolSetting>().objectName = itemData[tempId].objectName;
-                activeItems[i].GetComponent<ItemToolSetting>().objectDescription = itemData[tempId].objectDescription;
-                activeItems[i].GetComponent<ItemToolSetting>().type = itemData[tempId].type;
-                activeItems[i].GetComponent<Image>().sprite = itemData[tempId].objectIcon;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().id = tempId;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectIcon.sprite = itemData[tempId].objectIcon;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectName = itemData[tempId].objectName;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = itemData[tempId].objectDescription;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().type = itemData[tempId].type;
+                activeItems_BagMenu[i].GetComponent<Image>().sprite = itemData[tempId].objectIcon;
             }
             else
             {
-                activeItems[i].GetComponent<ItemToolSetting>().id = -1;
-                activeItems[i].GetComponent<ItemToolSetting>().objectIcon = null;
-                activeItems[i].GetComponent<ItemToolSetting>().objectName = "";
-                activeItems[i].GetComponent<ItemToolSetting>().objectDescription = "";
-                activeItems[i].GetComponent<ItemToolSetting>().type = "Items";
-                activeItems[i].GetComponent<Image>().sprite = transparentSprite;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().id = -1;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectIcon = null;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectName = "";
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().type = "Items";
+                activeItems_BagMenu[i].GetComponent<Image>().sprite = transparentSprite;
             }
         }
     }
 
-    void initiateActiveShelf()
+    public void initiateActiveToolsinShelf()
+    {
+        for (int i = 0; i < maxActiveTools; i++)
+        {
+            int tempId = PlayerPrefs.GetInt("activeToolsId" + i);
+            if (tempId >= 0 && tempId < toolData.Length)
+            {
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().id = tempId;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectIcon.sprite = toolData[tempId].objectIcon;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectName = toolData[tempId].objectName;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = toolData[tempId].objectDescription;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = toolData[tempId].type;
+                activeTools_ShelfMenu[i].GetComponent<Image>().sprite = toolData[tempId].objectIcon;
+            }
+            else
+            {
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().id = -1;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectIcon = null;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectName = "";
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = "Tools";
+                activeTools_ShelfMenu[i].GetComponent<Image>().sprite = transparentSprite;
+            }
+        }
+    }
+
+    public void initiateActiveShelf()
     {
         for (int i = 0; i < maxActiveShelf; i++)
         {
             int tempId = PlayerPrefs.GetInt("activeShelfId" + i);
 
-            activeShelfTools[i].GetComponent<ItemToolSetting>().propertiesId = i;
+            activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().propertiesId = i;
             if (tempId >= 0 && tempId < itemData.Length)
             {
-                activeShelfTools[i].GetComponent<ItemToolSetting>().id = tempId;
-                activeShelfTools[i].GetComponent<ItemToolSetting>().objectIcon.sprite = itemData[tempId].objectIcon;
-                activeShelfTools[i].GetComponent<ItemToolSetting>().objectName = itemData[tempId].objectName;
-                activeShelfTools[i].GetComponent<ItemToolSetting>().objectDescription = itemData[tempId].objectDescription;
-                activeShelfTools[i].GetComponent<ItemToolSetting>().type = itemData[tempId].type;
-                activeShelfTools[i].GetComponent<Image>().sprite = itemData[tempId].objectIcon;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().id = tempId;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectIcon.sprite = toolData[tempId].objectIcon;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectName = toolData[tempId].objectName;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = toolData[tempId].objectDescription;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = "Shelf";
+                activeShelfTools_ShelfMenu[i].GetComponent<Image>().sprite = toolData[tempId].objectIcon;
             }
             else
             {
-                activeShelfTools[i].GetComponent<ItemToolSetting>().id = -1;
-                activeShelfTools[i].GetComponent<ItemToolSetting>().objectIcon = null;
-                activeShelfTools[i].GetComponent<ItemToolSetting>().objectName = "";
-                activeShelfTools[i].GetComponent<ItemToolSetting>().objectDescription = "";
-                activeShelfTools[i].GetComponent<ItemToolSetting>().type = "Items";
-                activeShelfTools[i].GetComponent<Image>().sprite = transparentSprite;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().id = -1;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectIcon = null;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectName = "";
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = "Shelf";
+                activeShelfTools_ShelfMenu[i].GetComponent<Image>().sprite = transparentSprite;
             }
         }
     }

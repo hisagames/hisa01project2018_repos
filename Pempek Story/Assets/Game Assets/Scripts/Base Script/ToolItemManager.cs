@@ -36,12 +36,19 @@ public class ToolItemManager : MonoBehaviour
     GameObject BoxItemUI; //box sprite yg berada dibawah, show saat bag dan hidden saat shelf dan fridge
     [SerializeField]
     GameObject UIMenu;
+
     [SerializeField]
-    GameObject ToolsMenu;
+    GameObject BagMenu;
     [SerializeField]
-    GameObject ItemsMenu;
+    GameObject FirstSelectedObjectInBag;
+
     [SerializeField]
     GameObject ShelfMenu;
+    [SerializeField]
+    GameObject FirstSelectedObjectInShelf;
+
+    public ToolItemSetting toolItemSetting;
+
     bool isUIMenuOpen;
 
     void Awake()
@@ -70,18 +77,28 @@ public class ToolItemManager : MonoBehaviour
                 {
                     UIMenu.SetActive(isUIMenuOpen);
                     BoxItemUI.SetActive(isUIMenuOpen);
-                    ToolsMenu.SetActive(isUIMenuOpen);
-                    ItemsMenu.SetActive(isUIMenuOpen);
+                    BagMenu.SetActive(isUIMenuOpen);
                     ShelfMenu.SetActive(!isUIMenuOpen);
+                    //toolItemSetting.initiateActiveTools();
+                    //toolItemSetting.initiateActiveItems();
+                    selectedObject = FirstSelectedObjectInBag;
                 }
                 else if (uiState == UIState.ShelfMenu)
                 {
                     UIMenu.SetActive(isUIMenuOpen);
                     BoxItemUI.SetActive(!isUIMenuOpen);
-                    ToolsMenu.SetActive(isUIMenuOpen);
-                    ItemsMenu.SetActive(!isUIMenuOpen);
+                    BagMenu.SetActive(!isUIMenuOpen);
                     ShelfMenu.SetActive(isUIMenuOpen);
+                    //toolItemSetting.initiateActiveToolsinShelf();
+                    //toolItemSetting.initiateActiveShelf();
+                    selectedObject = FirstSelectedObjectInShelf;
                 }
+
+                selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
+                selectedObjectName.text = selectedObject.GetComponent<ItemToolSetting>().objectName;
+                selectedObjectDescription.text = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+                bagPointer.transform.position =
+                    new Vector3(selectedObject.transform.position.x, selectedObject.transform.position.y, bagPointer.transform.position.z);
                 return true;
             }
             else
@@ -93,18 +110,24 @@ public class ToolItemManager : MonoBehaviour
                     {
                         UIMenu.SetActive(isUIMenuOpen);
                         BoxItemUI.SetActive(isUIMenuOpen);
-                        ToolsMenu.SetActive(isUIMenuOpen);
-                        ItemsMenu.SetActive(isUIMenuOpen);
+                        BagMenu.SetActive(isUIMenuOpen);
                         ShelfMenu.SetActive(!isUIMenuOpen);
+                        selectedObject = FirstSelectedObjectInShelf;
                     }
                     else if (uiState == UIState.ShelfMenu)
                     {
                         UIMenu.SetActive(isUIMenuOpen);
                         BoxItemUI.SetActive(!isUIMenuOpen);
-                        ToolsMenu.SetActive(isUIMenuOpen);
-                        ItemsMenu.SetActive(!isUIMenuOpen);
+                        BagMenu.SetActive(!isUIMenuOpen);
                         ShelfMenu.SetActive(isUIMenuOpen);
+                        selectedObject = FirstSelectedObjectInShelf;
                     }
+
+                    selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
+                    selectedObjectName.text = selectedObject.GetComponent<ItemToolSetting>().objectName;
+                    selectedObjectDescription.text = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+                    bagPointer.transform.position =
+                        new Vector3(selectedObject.transform.position.x, selectedObject.transform.position.y, bagPointer.transform.position.z);
                     return true;
                 }
                 else
@@ -210,7 +233,7 @@ public class ToolItemManager : MonoBehaviour
         
         PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "Id" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
             choosenObject.GetComponent<ItemToolSetting>().id);
-
+        
         PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "Id" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
             selectedObject.GetComponent<ItemToolSetting>().id);
         PlayerPrefs.Save();
@@ -218,6 +241,67 @@ public class ToolItemManager : MonoBehaviour
         selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
         selectedObjectName.text = selectedObject.GetComponent<ItemToolSetting>().objectName;
         selectedObjectDescription.text = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+
+        if(uiState == UIState.BagMenu)
+        {
+            if(selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+            {
+                toolItemSetting.activeTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = selectedObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = selectedObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = selectedObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = selectedObject.GetComponent<Image>().sprite;
+            }
+
+            if (choosenObject.GetComponent<ItemToolSetting>().type == "Tools")
+            {
+                toolItemSetting.activeTools_ShelfMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = choosenObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeTools_ShelfMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = choosenObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeTools_ShelfMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = choosenObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeTools_ShelfMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = choosenObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeTools_ShelfMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = choosenObject.GetComponent<Image>().sprite;
+            }
+        }
+        else if (uiState == UIState.ShelfMenu)
+        {
+            if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+            {
+                toolItemSetting.activeTools_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = selectedObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeTools_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = selectedObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeTools_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = selectedObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeTools_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeTools_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = selectedObject.GetComponent<Image>().sprite;
+            }
+
+            if (choosenObject.GetComponent<ItemToolSetting>().type == "Tools")
+            {
+                toolItemSetting.activeTools_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = choosenObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeTools_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = choosenObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeTools_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = choosenObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeTools_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = choosenObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeTools_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = choosenObject.GetComponent<Image>().sprite;
+            }
+        }
     }
 
     void Update()
