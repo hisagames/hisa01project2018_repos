@@ -242,7 +242,8 @@ public class ToolItemManager : MonoBehaviour
         selectedObjectName.text = selectedObject.GetComponent<ItemToolSetting>().objectName;
         selectedObjectDescription.text = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
 
-        if(uiState == UIState.BagMenu)
+        #region Synchronize Bag Menu and Shelf Menu
+        if (uiState == UIState.BagMenu)
         {
             if(selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
             {
@@ -302,6 +303,7 @@ public class ToolItemManager : MonoBehaviour
                     = choosenObject.GetComponent<Image>().sprite;
             }
         }
+        #endregion
     }
 
     void Update()
