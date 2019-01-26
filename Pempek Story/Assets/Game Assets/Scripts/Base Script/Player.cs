@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public bool inSellerMode;
 
     public int state;
+    public string inCollisionKey;
 
     void Awake()
     {

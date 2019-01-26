@@ -31,9 +31,7 @@ public class ToolItemManager : MonoBehaviour
     [SerializeField]
     GameObject choosenObject;
     int choosenObjectId;
-
-    [SerializeField]
-    GameObject BoxItemUI; //box sprite yg berada dibawah, show saat bag dan hidden saat shelf dan fridge
+    
     [SerializeField]
     GameObject UIMenu;
 
@@ -46,6 +44,9 @@ public class ToolItemManager : MonoBehaviour
     GameObject ShelfMenu;
     [SerializeField]
     GameObject FirstSelectedObjectInShelf;
+
+    [SerializeField]
+    GameObject DescriptionGroupObject;
 
     public ToolItemSetting toolItemSetting;
 
@@ -76,22 +77,24 @@ public class ToolItemManager : MonoBehaviour
                 if (uiState == UIState.BagMenu)
                 {
                     UIMenu.SetActive(isUIMenuOpen);
-                    BoxItemUI.SetActive(isUIMenuOpen);
+                    //BoxItemUI.SetActive(isUIMenuOpen);
                     BagMenu.SetActive(isUIMenuOpen);
                     ShelfMenu.SetActive(!isUIMenuOpen);
-                    //toolItemSetting.initiateActiveTools();
-                    //toolItemSetting.initiateActiveItems();
                     selectedObject = FirstSelectedObjectInBag;
+                    bagPointer.transform.SetParent(BagMenu.transform.GetChild(4).transform);
+                    bagChoosenPointer.transform.SetParent(BagMenu.transform.GetChild(4).transform);
+                    DescriptionGroupObject.transform.position = BagMenu.transform.GetChild(7).transform.position;
                 }
                 else if (uiState == UIState.ShelfMenu)
                 {
                     UIMenu.SetActive(isUIMenuOpen);
-                    BoxItemUI.SetActive(!isUIMenuOpen);
+                    //BoxItemUI.SetActive(!isUIMenuOpen);
                     BagMenu.SetActive(!isUIMenuOpen);
                     ShelfMenu.SetActive(isUIMenuOpen);
-                    //toolItemSetting.initiateActiveToolsinShelf();
-                    //toolItemSetting.initiateActiveShelf();
                     selectedObject = FirstSelectedObjectInShelf;
+                    bagPointer.transform.SetParent(ShelfMenu.transform.GetChild(4).transform);
+                    bagChoosenPointer.transform.SetParent(ShelfMenu.transform.GetChild(4).transform);
+                    DescriptionGroupObject.transform.position = ShelfMenu.transform.GetChild(7).transform.position;
                 }
 
                 selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
@@ -109,7 +112,7 @@ public class ToolItemManager : MonoBehaviour
                     if (uiState == UIState.BagMenu)
                     {
                         UIMenu.SetActive(isUIMenuOpen);
-                        BoxItemUI.SetActive(isUIMenuOpen);
+                        //BoxItemUI.SetActive(isUIMenuOpen);
                         BagMenu.SetActive(isUIMenuOpen);
                         ShelfMenu.SetActive(!isUIMenuOpen);
                         selectedObject = FirstSelectedObjectInShelf;
@@ -117,7 +120,7 @@ public class ToolItemManager : MonoBehaviour
                     else if (uiState == UIState.ShelfMenu)
                     {
                         UIMenu.SetActive(isUIMenuOpen);
-                        BoxItemUI.SetActive(!isUIMenuOpen);
+                        //BoxItemUI.SetActive(!isUIMenuOpen);
                         BagMenu.SetActive(!isUIMenuOpen);
                         ShelfMenu.SetActive(isUIMenuOpen);
                         selectedObject = FirstSelectedObjectInShelf;
@@ -147,16 +150,70 @@ public class ToolItemManager : MonoBehaviour
         switch (moveTo)
         {
             case "left":
-                selectedObject = selectedObject.GetComponent<ItemToolSetting>().leftNeighbour;
+                if (selectedObject.GetComponent<ItemToolSetting>().leftNeighbour != null)
+                    selectedObject = selectedObject.GetComponent<ItemToolSetting>().leftNeighbour;
+                else
+                {
+                    if (uiState == UIState.BagMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+                            selectedObject = toolItemSetting.activeTools_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 1];
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+                            selectedObject = toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 1];
+                    }
+                    else if (uiState == UIState.ShelfMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+                            selectedObject = toolItemSetting.activeTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 1];
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 1];
+                    }
+                }
                 break;
             case "right":
-                selectedObject = selectedObject.GetComponent<ItemToolSetting>().rightNeighbour;
+                if (selectedObject.GetComponent<ItemToolSetting>().rightNeighbour != null)
+                    selectedObject = selectedObject.GetComponent<ItemToolSetting>().rightNeighbour;
+                else
+                {
+                    if (uiState == UIState.BagMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+                            selectedObject = toolItemSetting.activeTools_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 1];
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+                            selectedObject = toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 1];
+                    }
+                    else if (uiState == UIState.ShelfMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+                            selectedObject = toolItemSetting.activeTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 1];
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 1];
+                    }
+                }
                 break;
             case "up":
-                selectedObject = selectedObject.GetComponent<ItemToolSetting>().upNeighbour;
+                if (selectedObject.GetComponent<ItemToolSetting>().upNeighbour != null)
+                    selectedObject = selectedObject.GetComponent<ItemToolSetting>().upNeighbour;
+                else
+                {
+                    if (uiState == UIState.ShelfMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 13];
+                    }
+                }
                 break;
             case "down":
-                selectedObject = selectedObject.GetComponent<ItemToolSetting>().downNeighbour;
+                if (selectedObject.GetComponent<ItemToolSetting>().downNeighbour != null)
+                    selectedObject = selectedObject.GetComponent<ItemToolSetting>().downNeighbour;
+                else
+                {
+                    if (uiState == UIState.ShelfMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 13];
+                    }
+                }
                 break;
         }
 

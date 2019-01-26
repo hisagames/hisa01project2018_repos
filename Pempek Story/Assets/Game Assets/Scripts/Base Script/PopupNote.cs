@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PopupNote : MonoBehaviour
 {
-    enum PopupNoteType
+    public enum PopupNoteType
     {
         BottomInfo
     };
@@ -12,8 +12,8 @@ public class PopupNote : MonoBehaviour
     [SerializeField]
     string popupNoteString;
 
-    [SerializeField]
-    PopupNoteType popupNoteType;
+    public PopupNoteType popupNoteType;
+    public string popupNoteKey;
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -24,6 +24,7 @@ public class PopupNote : MonoBehaviour
                 case PopupNoteType.BottomInfo:
                     PopupNoteManager.instance.BottomInfo.SetActive(true);
                     PopupNoteManager.instance.UpdateBottomInfoText(popupNoteString);
+                    Player.instance.inCollisionKey = popupNoteKey;
                     break;
             }
         }
@@ -37,8 +38,8 @@ public class PopupNote : MonoBehaviour
             {
                 case PopupNoteType.BottomInfo:
                     PopupNoteManager.instance.BottomInfo.SetActive(false);
+                    Player.instance.inCollisionKey = "";
                     break;
-
             }
         }
     }

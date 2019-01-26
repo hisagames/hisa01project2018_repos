@@ -27,7 +27,7 @@ public class ToolItemSetting : MonoBehaviour
     public ItemData[] itemData;
     int maxActiveTools = 9;
     int maxActiveItems = 9;
-    int maxActiveShelf = 9;
+    int maxActiveShelf = 39;
 
     public GameObject[] activeTools_BagMenu;
     public GameObject[] activeItems_BagMenu;
@@ -126,6 +126,11 @@ public class ToolItemSetting : MonoBehaviour
 
     public void initiateActiveShelf()
     {
+        for (int i = 8; i < maxActiveShelf; i++)
+        {
+            PlayerPrefs.SetInt("activeShelfId" + i, -1);
+        }
+
         for (int i = 0; i < maxActiveShelf; i++)
         {
             int tempId = PlayerPrefs.GetInt("activeShelfId" + i);

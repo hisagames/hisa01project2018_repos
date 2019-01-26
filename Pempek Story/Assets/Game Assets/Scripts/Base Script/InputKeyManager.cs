@@ -55,16 +55,18 @@ public class InputKeyManager : MonoBehaviour
                     ToolItemManager.instance.uiState = ToolItemManager.UIState.BagMenu;
                     ToolItemManager.instance.changeToolItemOpenState(true);
                     inputState = InputState.InBagMenu;
+                    PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
                 }
 
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    //if (intriggerwithshelf)
-                    //{
+                    if (Player.instance.inCollisionKey == "ShelfCollision")
+                    {
                         ToolItemManager.instance.uiState = ToolItemManager.UIState.ShelfMenu;
                         ToolItemManager.instance.changeToolItemOpenState(true);
                         inputState = InputState.InShelfMenu;
-                    //}
+                        PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
+                    }
                 }
                 break;
             #endregion
