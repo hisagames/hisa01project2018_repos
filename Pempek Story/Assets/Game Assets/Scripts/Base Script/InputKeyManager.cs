@@ -13,9 +13,6 @@ public class InputKeyManager : MonoBehaviour
 
     InputState inputState;
 
-    [SerializeField]
-    UIManager bagManager;
-
     void Start()
     {
         
