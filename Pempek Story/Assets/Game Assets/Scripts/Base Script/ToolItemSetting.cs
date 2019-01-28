@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,8 +36,7 @@ public class ToolItemSetting : MonoBehaviour
     public GameObject[] activeTools_ShelfMenu;
     public GameObject[] activeShelfTools_ShelfMenu;
 
-    [SerializeField]
-    Sprite transparentSprite;
+    public Sprite transparentSprite;
 
     void Start()
     {
@@ -126,14 +126,10 @@ public class ToolItemSetting : MonoBehaviour
 
     public void initiateActiveShelf()
     {
-        for (int i = 8; i < maxActiveShelf; i++)
-        {
-            PlayerPrefs.SetInt("activeShelfId" + i, -1);
-        }
-
         for (int i = 0; i < maxActiveShelf; i++)
         {
             int tempId = PlayerPrefs.GetInt("activeShelfId" + i);
+            int tempTotalInId = PlayerPrefs.GetInt("activeShelfTotalInId" + i);
 
             activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().propertiesId = i;
             if (tempId >= 0 && tempId < itemData.Length)
@@ -144,6 +140,10 @@ public class ToolItemSetting : MonoBehaviour
                 activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = toolData[tempId].objectDescription;
                 activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = "Shelf";
                 activeShelfTools_ShelfMenu[i].GetComponent<Image>().sprite = toolData[tempId].objectIcon;
+
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObject = tempTotalInId;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                   activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObject + "";
             }
             else
             {
@@ -153,6 +153,9 @@ public class ToolItemSetting : MonoBehaviour
                 activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
                 activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = "Shelf";
                 activeShelfTools_ShelfMenu[i].GetComponent<Image>().sprite = transparentSprite;
+                
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObject = 0;
+                activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
             }
         }
     }

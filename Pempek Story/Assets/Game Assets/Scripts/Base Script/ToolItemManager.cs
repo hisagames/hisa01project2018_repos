@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -144,9 +145,6 @@ public class ToolItemManager : MonoBehaviour
 
     public void UpdateToolItemPointer(string moveTo)
     {
-        //MASIH TERDAPAT 2 TASK YANG PERLU DI FIX KAN
-        //-Saat movement pointer di shelf menu masih mengarah pada object item, fix kan.
-        //-Menu Shelf menu hanya terbuka saat player menekan tombol z sambil trigger pada shelf menu
         switch (moveTo)
         {
             case "left":
@@ -260,15 +258,75 @@ public class ToolItemManager : MonoBehaviour
             else if (tempChoosenString == "Fridge")
                 tempChoosenString = "Items";
 
+            bool tempClearSelectedObject = false;
+            bool tempClearChoosenObject = false;
+
             if (tempSelectedString == tempChoosenString)
             {
-                changeObjectPosition();
+                if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                {
+                    if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                    {
+                        if (choosenObject.GetComponent<ItemToolSetting>().id == selectedObject.GetComponent<ItemToolSetting>().id)
+                        {
+                            selectedObject.GetComponent<ItemToolSetting>().totalObject += 1;
+                            tempClearChoosenObject = true;
+                        }
+                        else
+                        {
+                            selectedObject.GetComponent<ItemToolSetting>().totalObject = 1;
+                        }
+                        selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                            selectedObject.GetComponent<ItemToolSetting>().totalObject + "";
+                    }
+                    else if (choosenObject.GetComponent<ItemToolSetting>().id == -1)
+                    {
+                        selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                        selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
+                    }
+
+                    PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "TotalInId" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
+                        selectedObject.GetComponent<ItemToolSetting>().totalObject);
+                }
+
+                if (choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                {
+                    if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                    {
+                        choosenObject.GetComponent<ItemToolSetting>().totalObject = 1;
+                        choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                            choosenObject.GetComponent<ItemToolSetting>().totalObject + "";
+                    }
+                    else if (selectedObject.GetComponent<ItemToolSetting>().id == -1)
+                    {
+                        choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                        choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
+                    }
+
+                    PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "TotalInId" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
+                        choosenObject.GetComponent<ItemToolSetting>().totalObject);
+                }
+
+                changeObjectPosition(tempClearSelectedObject, tempClearChoosenObject);
                 UpdateToolItemChoosenPointer(false);
             }
         }
     }
+    
+    void clearObjectSlot(GameObject temp)
+    {
+        temp.GetComponent<ItemToolSetting>().id = -1;
+        temp.GetComponent<ItemToolSetting>().objectIcon = null;
+        temp.GetComponent<ItemToolSetting>().objectName = "";
+        temp.GetComponent<ItemToolSetting>().objectDescription = "";
+        temp.GetComponent<Image>().sprite = toolItemSetting.transparentSprite;
 
-    void changeObjectPosition()
+        temp.GetComponent<ItemToolSetting>().totalObject = 0;
+        PlayerPrefs.SetInt("active" + temp.GetComponent<ItemToolSetting>().type + "Id" + temp.GetComponent<ItemToolSetting>().propertiesId,
+            temp.GetComponent<ItemToolSetting>().id);
+    }
+
+    void changeObjectPosition(bool tempClearSelectedObject, bool tempClearChoosenObject)
     {
         int tempId = selectedObject.GetComponent<ItemToolSetting>().id;
         Image tempObjectIcon = selectedObject.GetComponent<ItemToolSetting>().objectIcon;
@@ -287,7 +345,12 @@ public class ToolItemManager : MonoBehaviour
         choosenObject.GetComponent<ItemToolSetting>().objectName = tempObjectName;
         choosenObject.GetComponent<ItemToolSetting>().objectDescription = tempObjectDescription;
         choosenObject.GetComponent<Image>().sprite = tempSprite;
-        
+
+        if (tempClearSelectedObject)
+            clearObjectSlot(selectedObject);
+        if (tempClearChoosenObject)
+            clearObjectSlot(choosenObject);
+
         PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "Id" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
             choosenObject.GetComponent<ItemToolSetting>().id);
         
