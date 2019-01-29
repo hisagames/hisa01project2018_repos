@@ -50,6 +50,7 @@ public class ToolItemSetting : MonoBehaviour
     {
         for (int i = 0; i < maxActiveTools; i++)
         {
+            //PlayerPrefs.SetInt("activeToolsId" + i, 0);
             int tempId = PlayerPrefs.GetInt("activeToolsId" + i);
             if (tempId >= 0 && tempId < toolData.Length)
             {
@@ -59,6 +60,7 @@ public class ToolItemSetting : MonoBehaviour
                 activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = toolData[tempId].objectDescription;
                 activeTools_BagMenu[i].GetComponent<ItemToolSetting>().type = toolData[tempId].type;
                 activeTools_BagMenu[i].GetComponent<Image>().sprite = toolData[tempId].objectIcon;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().totalObject = 1;
             }
             else
             {
@@ -68,6 +70,7 @@ public class ToolItemSetting : MonoBehaviour
                 activeTools_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
                 activeTools_BagMenu[i].GetComponent<ItemToolSetting>().type = "Tools";
                 activeTools_BagMenu[i].GetComponent<Image>().sprite = transparentSprite;
+                activeTools_BagMenu[i].GetComponent<ItemToolSetting>().totalObject = 0;
             }
         }
     }
@@ -85,6 +88,7 @@ public class ToolItemSetting : MonoBehaviour
                 activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = itemData[tempId].objectDescription;
                 activeItems_BagMenu[i].GetComponent<ItemToolSetting>().type = itemData[tempId].type;
                 activeItems_BagMenu[i].GetComponent<Image>().sprite = itemData[tempId].objectIcon;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().totalObject = 1;
             }
             else
             {
@@ -94,6 +98,7 @@ public class ToolItemSetting : MonoBehaviour
                 activeItems_BagMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
                 activeItems_BagMenu[i].GetComponent<ItemToolSetting>().type = "Items";
                 activeItems_BagMenu[i].GetComponent<Image>().sprite = transparentSprite;
+                activeItems_BagMenu[i].GetComponent<ItemToolSetting>().totalObject = 0;
             }
         }
     }
@@ -111,6 +116,7 @@ public class ToolItemSetting : MonoBehaviour
                 activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = toolData[tempId].objectDescription;
                 activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = toolData[tempId].type;
                 activeTools_ShelfMenu[i].GetComponent<Image>().sprite = toolData[tempId].objectIcon;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObject = 1;
             }
             else
             {
@@ -120,6 +126,7 @@ public class ToolItemSetting : MonoBehaviour
                 activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
                 activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().type = "Tools";
                 activeTools_ShelfMenu[i].GetComponent<Image>().sprite = transparentSprite;
+                activeTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObject = 0;
             }
         }
     }
