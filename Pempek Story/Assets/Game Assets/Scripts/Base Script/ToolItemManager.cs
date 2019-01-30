@@ -265,138 +265,177 @@ public class ToolItemManager : MonoBehaviour
 
             if (tempSelectedString == tempChoosenString)
             {
-                if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
                 {
-                    if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                    if (choosenObject.GetComponent<ItemToolSetting>().type == "Tools")
                     {
-                        if(choosenObject.GetComponent<ItemToolSetting>().propertiesId == selectedObject.GetComponent<ItemToolSetting>().propertiesId && 
-                            choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                        //nothing, just exchange it
+                    }
+                    else if (choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
                         {
-                            tempIsPartialMoveSelectedObject = true;
-                            tempIsPartialMoveChoosenObject = true;
-                        }
-                        else if (choosenObject.GetComponent<ItemToolSetting>().id == selectedObject.GetComponent<ItemToolSetting>().id)
-                        {
-                            if (choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
                             {
-                                selectedObject.GetComponent<ItemToolSetting>().totalObject += choosenObject.GetComponent<ItemToolSetting>().totalObject;
-                                choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
-                            }
-                            else if (choosenObject.GetComponent<ItemToolSetting>().type == "Tools")
-                                selectedObject.GetComponent<ItemToolSetting>().totalObject += 1;
-                            choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
-                            tempClearChoosenObject = true;
-                        }
-                        else
-                        {
-                            if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 1)
-                            {
-                                if (choosenObject.GetComponent<ItemToolSetting>().type == "Tools")
+                                if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 1)
                                 {
                                     tempIsPartialMoveSelectedObject = true;
                                     tempIsPartialMoveChoosenObject = true;
                                 }
+                                else
+                                {
+                                    //nothing, just exchange it
+                                }
                             }
                             else
                             {
-                                selectedObject.GetComponent<ItemToolSetting>().totalObject = 1;
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject += 1;
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
                             }
-                        }
-                        selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
-                            selectedObject.GetComponent<ItemToolSetting>().totalObject + "";
-                    }
-                    else if (choosenObject.GetComponent<ItemToolSetting>().id == -1)
-                    {
-                        if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 1)
-                        {
-                            selectedObject.GetComponent<ItemToolSetting>().totalObject -= 1;
-                            selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
-                                selectedObject.GetComponent<ItemToolSetting>().totalObject + "";
-                            tempIsPartialMoveChoosenObject = true;
                         }
                         else
                         {
-                            selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
-                            selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 1)
+                                {
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject -= 1;
+                                    tempIsPartialMoveSelectedObject = true;
+                                }
+                                else if (choosenObject.GetComponent<ItemToolSetting>().totalObject == 1)
+                                {
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                }
+                                else if (choosenObject.GetComponent<ItemToolSetting>().totalObject == 0)
+                                {
+                                    //nothing, just exchange it
+                                }
+                            }
                         }
                     }
+                }
 
-                    PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "TotalInId" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
-                        selectedObject.GetComponent<ItemToolSetting>().totalObject);
+                else if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                {
+                    if (choosenObject.GetComponent<ItemToolSetting>().type == "Tools")
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                        {
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                if (selectedObject.GetComponent<ItemToolSetting>().id == choosenObject.GetComponent<ItemToolSetting>().id)
+                                {
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject += 1;
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                    tempClearChoosenObject = true;
+                                }
+                                else
+                                {
+                                    if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 1)
+                                    {
+                                        tempIsPartialMoveSelectedObject = true;
+                                        tempIsPartialMoveChoosenObject = true;
+                                    }
+                                    else
+                                    {
+                                        //nothing, just exchange it
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 1)
+                                {
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject -= 1;
+                                    tempIsPartialMoveChoosenObject = true;
+                                }
+                                else if (selectedObject.GetComponent<ItemToolSetting>().totalObject == 1)
+                                {
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                }
+                                else if (selectedObject.GetComponent<ItemToolSetting>().totalObject == 0)
+                                {
+                                    //nothing, just exchange it
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject += 1;
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                tempClearChoosenObject = true;
+                            }
+                            else
+                            {
+                                //nothing, just exchange it
+                            }
+                        }
+                    }
+                    else if (choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                    {
+                        if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                        {
+                            if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                if (choosenObject.GetComponent<ItemToolSetting>().id == selectedObject.GetComponent<ItemToolSetting>().id)
+                                {
+                                    if (choosenObject.GetComponent<ItemToolSetting>().propertiesId 
+                                        != selectedObject.GetComponent<ItemToolSetting>().propertiesId)
+                                    {
+                                        selectedObject.GetComponent<ItemToolSetting>().totalObject 
+                                            += choosenObject.GetComponent<ItemToolSetting>().totalObject;
+                                        choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                        tempClearChoosenObject = true;
+                                    }
+                                }
+                                else
+                                {
+                                    int tempTotalObject = selectedObject.GetComponent<ItemToolSetting>().totalObject;
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject = choosenObject.GetComponent<ItemToolSetting>().totalObject;
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject = tempTotalObject;
+                                }
+                            }
+                            else
+                            {
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject = choosenObject.GetComponent<ItemToolSetting>().totalObject;
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                tempClearChoosenObject = true;
+                            }
+                        }
+                        else
+                        {
+                            if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject = selectedObject.GetComponent<ItemToolSetting>().totalObject;
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                tempClearSelectedObject = true;
+                            }
+                            else
+                            {
+                                //nothing, just exchange it
+                            }
+                        }
+                    }
+                }
+
+                if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                {
+                    if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 0)
+                        selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject + "";
+                    else
+                        selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
                 }
 
                 if (choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
                 {
-                    if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
-                    {
-                        if (selectedObject.GetComponent<ItemToolSetting>().id == choosenObject.GetComponent<ItemToolSetting>().id)
-                        {
-                            tempIsPartialMoveSelectedObject = true;
-                            tempIsPartialMoveChoosenObject = true;
-                        }
-                        else
-                        {
-                            if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 1)
-                            {
-                                if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
-                                {
-                                    tempIsPartialMoveSelectedObject = true;
-                                    tempIsPartialMoveChoosenObject = true;
-                                }
-                                else if(selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
-                                {
-                                    int temp = selectedObject.GetComponent<ItemToolSetting>().totalObject;
-
-                                    selectedObject.GetComponent<ItemToolSetting>().totalObject = choosenObject.GetComponent<ItemToolSetting>().totalObject;
-                                    selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
-                                        selectedObject.GetComponent<ItemToolSetting>().totalObject + "";
-                                    PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "TotalInId" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
-                                        selectedObject.GetComponent<ItemToolSetting>().totalObject);
-
-                                    choosenObject.GetComponent<ItemToolSetting>().totalObject = temp;
-                                }
-                            }
-                            else
-                            {
-                                choosenObject.GetComponent<ItemToolSetting>().totalObject = 1;
-                            }
-                        }
-                        if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 0)
-                            choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                    if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 0)
+                        choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
                                 choosenObject.GetComponent<ItemToolSetting>().totalObject + "";
-                    }
-                    else if (selectedObject.GetComponent<ItemToolSetting>().id == -1)
-                    {
-                        if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 1)
-                        {
-                            if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
-                            {
-                                selectedObject.GetComponent<ItemToolSetting>().totalObject = choosenObject.GetComponent<ItemToolSetting>().totalObject;
-                                selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
-                                    selectedObject.GetComponent<ItemToolSetting>().totalObject + "";
-                                PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "TotalInId" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
-                                    selectedObject.GetComponent<ItemToolSetting>().totalObject);
-
-                                choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
-                                choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
-                            }
-                            else
-                            {
-                                choosenObject.GetComponent<ItemToolSetting>().totalObject -= 1;
-                                choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
-                                    choosenObject.GetComponent<ItemToolSetting>().totalObject + "";
-                                tempIsPartialMoveSelectedObject = true;
-                            }
-                        }
-                        else
-                        {
-                            choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
-                            choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                    }
-
-                    PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "TotalInId" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
-                        choosenObject.GetComponent<ItemToolSetting>().totalObject);
+                    else
+                        choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
                 }
 
                 changeObjectPosition(tempClearSelectedObject, tempClearChoosenObject, tempIsPartialMoveSelectedObject, tempIsPartialMoveChoosenObject);
@@ -424,6 +463,7 @@ public class ToolItemManager : MonoBehaviour
         Image tempObjectIcon = selectedObject.GetComponent<ItemToolSetting>().objectIcon;
         string tempObjectName = selectedObject.GetComponent<ItemToolSetting>().objectName;
         string tempObjectDescription = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+        //int tempTotalObject = selectedObject.GetComponent<ItemToolSetting>().totalObject;
         Sprite tempSprite = selectedObject.GetComponent<Image>().sprite;
 
         if (!tempIsPartialMoveChoosenObject)
@@ -432,6 +472,7 @@ public class ToolItemManager : MonoBehaviour
             selectedObject.GetComponent<ItemToolSetting>().objectIcon = choosenObject.GetComponent<ItemToolSetting>().objectIcon;
             selectedObject.GetComponent<ItemToolSetting>().objectName = choosenObject.GetComponent<ItemToolSetting>().objectName;
             selectedObject.GetComponent<ItemToolSetting>().objectDescription = choosenObject.GetComponent<ItemToolSetting>().objectDescription;
+            //selectedObject.GetComponent<ItemToolSetting>().totalObject = choosenObject.GetComponent<ItemToolSetting>().totalObject;
             selectedObject.GetComponent<Image>().sprite = choosenObject.GetComponent<Image>().sprite;
         }
 
@@ -441,6 +482,7 @@ public class ToolItemManager : MonoBehaviour
             choosenObject.GetComponent<ItemToolSetting>().objectIcon = tempObjectIcon;
             choosenObject.GetComponent<ItemToolSetting>().objectName = tempObjectName;
             choosenObject.GetComponent<ItemToolSetting>().objectDescription = tempObjectDescription;
+            //choosenObject.GetComponent<ItemToolSetting>().totalObject = tempTotalObject;
             choosenObject.GetComponent<Image>().sprite = tempSprite;
         }
 
@@ -451,9 +493,13 @@ public class ToolItemManager : MonoBehaviour
 
         PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "Id" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
             choosenObject.GetComponent<ItemToolSetting>().id);
-        
+        PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "TotalInId" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
+            choosenObject.GetComponent<ItemToolSetting>().totalObject);
+
         PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "Id" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
             selectedObject.GetComponent<ItemToolSetting>().id);
+        PlayerPrefs.SetInt("active" + selectedObject.GetComponent<ItemToolSetting>().type + "TotalInId" + selectedObject.GetComponent<ItemToolSetting>().propertiesId,
+            selectedObject.GetComponent<ItemToolSetting>().totalObject);
         PlayerPrefs.Save();
 
         selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
