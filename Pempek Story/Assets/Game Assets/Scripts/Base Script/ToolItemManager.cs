@@ -9,7 +9,8 @@ public class ToolItemManager : MonoBehaviour
     public enum UIState
     {
         BagMenu,
-        ShelfMenu
+        ShelfMenu,
+        FridgeMenu
     }
 
     public static ToolItemManager instance;
@@ -47,6 +48,11 @@ public class ToolItemManager : MonoBehaviour
     GameObject FirstSelectedObjectInShelf;
 
     [SerializeField]
+    GameObject FridgeMenu;
+    [SerializeField]
+    GameObject FirstSelectedObjectInFridge;
+
+    [SerializeField]
     GameObject DescriptionGroupObject;
 
     public ToolItemSetting toolItemSetting;
@@ -78,9 +84,9 @@ public class ToolItemManager : MonoBehaviour
                 if (uiState == UIState.BagMenu)
                 {
                     UIMenu.SetActive(isUIMenuOpen);
-                    //BoxItemUI.SetActive(isUIMenuOpen);
                     BagMenu.SetActive(isUIMenuOpen);
                     ShelfMenu.SetActive(!isUIMenuOpen);
+                    FridgeMenu.SetActive(!isUIMenuOpen);
                     selectedObject = FirstSelectedObjectInBag;
                     bagPointer.transform.SetParent(BagMenu.transform.GetChild(4).transform);
                     bagChoosenPointer.transform.SetParent(BagMenu.transform.GetChild(4).transform);
@@ -89,13 +95,24 @@ public class ToolItemManager : MonoBehaviour
                 else if (uiState == UIState.ShelfMenu)
                 {
                     UIMenu.SetActive(isUIMenuOpen);
-                    //BoxItemUI.SetActive(!isUIMenuOpen);
                     BagMenu.SetActive(!isUIMenuOpen);
                     ShelfMenu.SetActive(isUIMenuOpen);
+                    FridgeMenu.SetActive(!isUIMenuOpen);
                     selectedObject = FirstSelectedObjectInShelf;
                     bagPointer.transform.SetParent(ShelfMenu.transform.GetChild(4).transform);
                     bagChoosenPointer.transform.SetParent(ShelfMenu.transform.GetChild(4).transform);
                     DescriptionGroupObject.transform.position = ShelfMenu.transform.GetChild(7).transform.position;
+                }
+                else if (uiState == UIState.FridgeMenu)
+                {
+                    UIMenu.SetActive(isUIMenuOpen);
+                    BagMenu.SetActive(!isUIMenuOpen);
+                    ShelfMenu.SetActive(!isUIMenuOpen);
+                    FridgeMenu.SetActive(isUIMenuOpen);
+                    selectedObject = FirstSelectedObjectInFridge;
+                    bagPointer.transform.SetParent(FridgeMenu.transform.GetChild(4).transform);
+                    bagChoosenPointer.transform.SetParent(FridgeMenu.transform.GetChild(4).transform);
+                    DescriptionGroupObject.transform.position = FridgeMenu.transform.GetChild(7).transform.position;
                 }
 
                 selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
@@ -113,18 +130,26 @@ public class ToolItemManager : MonoBehaviour
                     if (uiState == UIState.BagMenu)
                     {
                         UIMenu.SetActive(isUIMenuOpen);
-                        //BoxItemUI.SetActive(isUIMenuOpen);
                         BagMenu.SetActive(isUIMenuOpen);
                         ShelfMenu.SetActive(!isUIMenuOpen);
-                        selectedObject = FirstSelectedObjectInShelf;
+                        FridgeMenu.SetActive(!isUIMenuOpen);
+                        selectedObject = FirstSelectedObjectInBag;
                     }
                     else if (uiState == UIState.ShelfMenu)
                     {
                         UIMenu.SetActive(isUIMenuOpen);
-                        //BoxItemUI.SetActive(!isUIMenuOpen);
                         BagMenu.SetActive(!isUIMenuOpen);
                         ShelfMenu.SetActive(isUIMenuOpen);
+                        FridgeMenu.SetActive(!isUIMenuOpen);
                         selectedObject = FirstSelectedObjectInShelf;
+                    }
+                    else if (uiState == UIState.FridgeMenu)
+                    {
+                        UIMenu.SetActive(isUIMenuOpen);
+                        BagMenu.SetActive(!isUIMenuOpen);
+                        ShelfMenu.SetActive(!isUIMenuOpen);
+                        FridgeMenu.SetActive(isUIMenuOpen);
+                        selectedObject = FirstSelectedObjectInFridge;
                     }
 
                     selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;

@@ -8,7 +8,8 @@ public class InputKeyManager : MonoBehaviour
     {
         None,
         InBagMenu,
-        InShelfMenu
+        InShelfMenu,
+        InFridgeMenu
     }
 
     InputState inputState;
@@ -62,6 +63,13 @@ public class InputKeyManager : MonoBehaviour
                         ToolItemManager.instance.uiState = ToolItemManager.UIState.ShelfMenu;
                         ToolItemManager.instance.changeToolItemOpenState(true);
                         inputState = InputState.InShelfMenu;
+                        PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
+                    }
+                    if (Player.instance.inCollisionKey == "FridgeCollision")
+                    {
+                        ToolItemManager.instance.uiState = ToolItemManager.UIState.FridgeMenu;
+                        ToolItemManager.instance.changeToolItemOpenState(true);
+                        inputState = InputState.InFridgeMenu;
                         PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
                     }
                 }
