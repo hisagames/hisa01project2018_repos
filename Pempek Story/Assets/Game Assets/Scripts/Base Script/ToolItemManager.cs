@@ -33,7 +33,7 @@ public class ToolItemManager : MonoBehaviour
     [SerializeField]
     GameObject choosenObject;
     int choosenObjectId;
-    
+
     [SerializeField]
     GameObject UIMenu;
 
@@ -124,7 +124,7 @@ public class ToolItemManager : MonoBehaviour
             }
             else
             {
-                if(!bagChoosenPointer.activeSelf)
+                if (!bagChoosenPointer.activeSelf)
                 {
                     isUIMenuOpen = state;
                     if (uiState == UIState.BagMenu)
@@ -191,6 +191,13 @@ public class ToolItemManager : MonoBehaviour
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
                             selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 1];
                     }
+                    else if (uiState == UIState.FridgeMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+                            selectedObject = toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 1];
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 1];
+                    }
                 }
                 break;
             case "right":
@@ -212,6 +219,13 @@ public class ToolItemManager : MonoBehaviour
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
                             selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 1];
                     }
+                    else if (uiState == UIState.FridgeMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+                            selectedObject = toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 1];
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 1];
+                    }
                 }
                 break;
             case "up":
@@ -224,6 +238,11 @@ public class ToolItemManager : MonoBehaviour
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
                             selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 13];
                     }
+                    else if (uiState == UIState.FridgeMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 13];
+                    }
                 }
                 break;
             case "down":
@@ -235,6 +254,11 @@ public class ToolItemManager : MonoBehaviour
                     {
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
                             selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 13];
+                    }
+                    else if (uiState == UIState.FridgeMenu)
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 13];
                     }
                 }
                 break;
@@ -251,22 +275,19 @@ public class ToolItemManager : MonoBehaviour
     {
         if ((state && !bagChoosenPointer.activeSelf) || !state)
         {
-            //if (selectedObject.GetComponent<ItemToolSetting>().id >= 0)
-            //{
-                bagChoosenPointer.SetActive(state);
-                if (state)
-                {
-                    choosenObject = selectedObject;
-                    choosenObjectId = choosenObject.GetComponent<ItemToolSetting>().id;
-                    bagChoosenPointer.transform.position =
-                        new Vector3(choosenObject.transform.position.x, choosenObject.transform.position.y, bagChoosenPointer.transform.position.z);
-                }
-                else
-                {
-                    choosenObject = null;
-                    choosenObjectId = -1;
-                }
-            //}
+            bagChoosenPointer.SetActive(state);
+            if (state)
+            {
+                choosenObject = selectedObject;
+                choosenObjectId = choosenObject.GetComponent<ItemToolSetting>().id;
+                bagChoosenPointer.transform.position =
+                    new Vector3(choosenObject.transform.position.x, choosenObject.transform.position.y, bagChoosenPointer.transform.position.z);
+            }
+            else
+            {
+                choosenObject = null;
+                choosenObjectId = -1;
+            }
         }
         else
         {
@@ -290,6 +311,7 @@ public class ToolItemManager : MonoBehaviour
 
             if (tempSelectedString == tempChoosenString)
             {
+                #region update tools-shelf, and vice versa
                 if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
                 {
                     if (choosenObject.GetComponent<ItemToolSetting>().type == "Tools")
@@ -406,10 +428,10 @@ public class ToolItemManager : MonoBehaviour
                             {
                                 if (choosenObject.GetComponent<ItemToolSetting>().id == selectedObject.GetComponent<ItemToolSetting>().id)
                                 {
-                                    if (choosenObject.GetComponent<ItemToolSetting>().propertiesId 
+                                    if (choosenObject.GetComponent<ItemToolSetting>().propertiesId
                                         != selectedObject.GetComponent<ItemToolSetting>().propertiesId)
                                     {
-                                        selectedObject.GetComponent<ItemToolSetting>().totalObject 
+                                        selectedObject.GetComponent<ItemToolSetting>().totalObject
                                             += choosenObject.GetComponent<ItemToolSetting>().totalObject;
                                         choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
                                         tempClearChoosenObject = true;
@@ -462,13 +484,189 @@ public class ToolItemManager : MonoBehaviour
                     else
                         choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
                 }
+                #endregion
+
+                #region update items-fridge, and vice versa
+                if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+                {
+                    if (choosenObject.GetComponent<ItemToolSetting>().type == "Items")
+                    {
+                        //nothing, just exchange it
+                    }
+                    else if (choosenObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                        {
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 1)
+                                {
+                                    tempIsPartialMoveSelectedObject = true;
+                                    tempIsPartialMoveChoosenObject = true;
+                                }
+                                else
+                                {
+                                    //nothing, just exchange it
+                                }
+                            }
+                            else
+                            {
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject += 1;
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                            }
+                        }
+                        else
+                        {
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 1)
+                                {
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject -= 1;
+                                    tempIsPartialMoveSelectedObject = true;
+                                }
+                                else if (choosenObject.GetComponent<ItemToolSetting>().totalObject == 1)
+                                {
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                }
+                                else if (choosenObject.GetComponent<ItemToolSetting>().totalObject == 0)
+                                {
+                                    //nothing, just exchange it
+                                }
+                            }
+                        }
+                    }
+                }
+
+                else if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                {
+                    if (choosenObject.GetComponent<ItemToolSetting>().type == "Items")
+                    {
+                        if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                        {
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                if (selectedObject.GetComponent<ItemToolSetting>().id == choosenObject.GetComponent<ItemToolSetting>().id)
+                                {
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject += 1;
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                    tempClearChoosenObject = true;
+                                }
+                                else
+                                {
+                                    if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 1)
+                                    {
+                                        tempIsPartialMoveSelectedObject = true;
+                                        tempIsPartialMoveChoosenObject = true;
+                                    }
+                                    else
+                                    {
+                                        //nothing, just exchange it
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 1)
+                                {
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject -= 1;
+                                    tempIsPartialMoveChoosenObject = true;
+                                }
+                                else if (selectedObject.GetComponent<ItemToolSetting>().totalObject == 1)
+                                {
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                }
+                                else if (selectedObject.GetComponent<ItemToolSetting>().totalObject == 0)
+                                {
+                                    //nothing, just exchange it
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject += 1;
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                tempClearChoosenObject = true;
+                            }
+                            else
+                            {
+                                //nothing, just exchange it
+                            }
+                        }
+                    }
+                    else if (choosenObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                    {
+                        if (choosenObject.GetComponent<ItemToolSetting>().id != -1)
+                        {
+                            if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                if (choosenObject.GetComponent<ItemToolSetting>().id == selectedObject.GetComponent<ItemToolSetting>().id)
+                                {
+                                    if (choosenObject.GetComponent<ItemToolSetting>().propertiesId
+                                        != selectedObject.GetComponent<ItemToolSetting>().propertiesId)
+                                    {
+                                        selectedObject.GetComponent<ItemToolSetting>().totalObject
+                                            += choosenObject.GetComponent<ItemToolSetting>().totalObject;
+                                        choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                        tempClearChoosenObject = true;
+                                    }
+                                }
+                                else
+                                {
+                                    int tempTotalObject = selectedObject.GetComponent<ItemToolSetting>().totalObject;
+                                    selectedObject.GetComponent<ItemToolSetting>().totalObject = choosenObject.GetComponent<ItemToolSetting>().totalObject;
+                                    choosenObject.GetComponent<ItemToolSetting>().totalObject = tempTotalObject;
+                                }
+                            }
+                            else
+                            {
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject = choosenObject.GetComponent<ItemToolSetting>().totalObject;
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                tempClearChoosenObject = true;
+                            }
+                        }
+                        else
+                        {
+                            if (selectedObject.GetComponent<ItemToolSetting>().id != -1)
+                            {
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject = selectedObject.GetComponent<ItemToolSetting>().totalObject;
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject = 0;
+                                tempClearSelectedObject = true;
+                            }
+                            else
+                            {
+                                //nothing, just exchange it
+                            }
+                        }
+                    }
+                }
+
+                if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                {
+                    if (selectedObject.GetComponent<ItemToolSetting>().totalObject > 0)
+                        selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                                selectedObject.GetComponent<ItemToolSetting>().totalObject + "";
+                    else
+                        selectedObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
+                }
+
+                if (choosenObject.GetComponent<ItemToolSetting>().type == "Fridge")
+                {
+                    if (choosenObject.GetComponent<ItemToolSetting>().totalObject > 0)
+                        choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                                choosenObject.GetComponent<ItemToolSetting>().totalObject + "";
+                    else
+                        choosenObject.GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
+                }
+                #endregion
 
                 changeObjectPosition(tempClearSelectedObject, tempClearChoosenObject, tempIsPartialMoveSelectedObject, tempIsPartialMoveChoosenObject);
                 UpdateToolItemChoosenPointer(false);
             }
         }
     }
-    
+
     void clearObjectSlot(GameObject temp)
     {
         temp.GetComponent<ItemToolSetting>().id = -1;
@@ -597,6 +795,77 @@ public class ToolItemManager : MonoBehaviour
                 toolItemSetting.activeTools_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
                     = choosenObject.GetComponent<Image>().sprite;
                 toolItemSetting.activeTools_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().totalObject
+                    = choosenObject.GetComponent<ItemToolSetting>().totalObject;
+            }
+        }
+        #endregion
+
+        #region Synchronize Bag Menu and Fridge Menu
+        if (uiState == UIState.BagMenu)
+        {
+            if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+            {
+                toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = selectedObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = selectedObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = selectedObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = selectedObject.GetComponent<Image>().sprite;
+                toolItemSetting.activeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().totalObject
+                    = selectedObject.GetComponent<ItemToolSetting>().totalObject;
+            }
+
+            if (choosenObject.GetComponent<ItemToolSetting>().type == "Items")
+            {
+                toolItemSetting.activeItems_FridgeMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = choosenObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeItems_FridgeMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = choosenObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeItems_FridgeMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = choosenObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeItems_FridgeMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = choosenObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeItems_FridgeMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = choosenObject.GetComponent<Image>().sprite;
+                toolItemSetting.activeItems_FridgeMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().totalObject
+                    = choosenObject.GetComponent<ItemToolSetting>().totalObject;
+            }
+        }
+        else if (uiState == UIState.FridgeMenu)
+        {
+            if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+            {
+                toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = selectedObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = selectedObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = selectedObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = selectedObject.GetComponent<Image>().sprite;
+                toolItemSetting.activeItems_BagMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().totalObject
+                    = selectedObject.GetComponent<ItemToolSetting>().totalObject;
+            }
+
+            if (choosenObject.GetComponent<ItemToolSetting>().type == "Items")
+            {
+                toolItemSetting.activeItems_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().id
+                    = choosenObject.GetComponent<ItemToolSetting>().id;
+                toolItemSetting.activeItems_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectIcon
+                    = choosenObject.GetComponent<ItemToolSetting>().objectIcon;
+                toolItemSetting.activeItems_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectName
+                    = choosenObject.GetComponent<ItemToolSetting>().objectName;
+                toolItemSetting.activeItems_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().objectDescription
+                    = choosenObject.GetComponent<ItemToolSetting>().objectDescription;
+                toolItemSetting.activeItems_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<Image>().sprite
+                    = choosenObject.GetComponent<Image>().sprite;
+                toolItemSetting.activeItems_BagMenu[choosenObject.GetComponent<ItemToolSetting>().propertiesId].GetComponent<ItemToolSetting>().totalObject
                     = choosenObject.GetComponent<ItemToolSetting>().totalObject;
             }
         }

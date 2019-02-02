@@ -29,12 +29,16 @@ public class ToolItemSetting : MonoBehaviour
     int maxActiveTools = 9;
     int maxActiveItems = 9;
     int maxActiveShelf = 39;
+    int maxActiveFridge = 39;
 
     public GameObject[] activeTools_BagMenu;
     public GameObject[] activeItems_BagMenu;
 
     public GameObject[] activeTools_ShelfMenu;
     public GameObject[] activeShelfTools_ShelfMenu;
+
+    public GameObject[] activeItems_FridgeMenu;
+    public GameObject[] activeFridgeItems_FridgeMenu;
 
     public Sprite transparentSprite;
 
@@ -44,6 +48,8 @@ public class ToolItemSetting : MonoBehaviour
         initiateActiveItems();
         initiateActiveShelf();
         initiateActiveToolsinShelf();
+        initiateActiveFridge();
+        initiateActiveItemsinFridge();
     }
 
     public void initiateActiveTools()
@@ -163,6 +169,70 @@ public class ToolItemSetting : MonoBehaviour
                 
                 activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObject = 0;
                 activeShelfTools_ShelfMenu[i].GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
+            }
+        }
+    }
+
+    public void initiateActiveItemsinFridge()
+    {
+        for (int i = 0; i < maxActiveItems; i++)
+        {
+            int tempId = PlayerPrefs.GetInt("activeItemsId" + i);
+            if (tempId >= 0 && tempId < itemData.Length)
+            {
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().id = tempId;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectIcon.sprite = itemData[tempId].objectIcon;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectName = itemData[tempId].objectName;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectDescription = itemData[tempId].objectDescription;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().type = itemData[tempId].type;
+                activeItems_FridgeMenu[i].GetComponent<Image>().sprite = itemData[tempId].objectIcon;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().totalObject = 1;
+            }
+            else
+            {
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().id = -1;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectIcon = null;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectName = "";
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().type = "Items";
+                activeItems_FridgeMenu[i].GetComponent<Image>().sprite = transparentSprite;
+                activeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().totalObject = 0;
+            }
+        }
+    }
+
+    public void initiateActiveFridge()
+    {
+        for (int i = 0; i < maxActiveFridge; i++)
+        {
+            int tempId = PlayerPrefs.GetInt("activeFridgeId" + i);
+            int tempTotalInId = PlayerPrefs.GetInt("activeFridgeTotalInId" + i);
+
+            activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().propertiesId = i;
+            if (tempId >= 0 && tempId < itemData.Length)
+            {
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().id = tempId;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectIcon.sprite = itemData[tempId].objectIcon;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectName = itemData[tempId].objectName;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectDescription = itemData[tempId].objectDescription;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().type = "Fridge";
+                activeFridgeItems_FridgeMenu[i].GetComponent<Image>().sprite = itemData[tempId].objectIcon;
+
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().totalObject = tempTotalInId;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text =
+                   activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().totalObject + "";
+            }
+            else
+            {
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().id = -1;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectIcon = null;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectName = "";
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().objectDescription = "";
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().type = "Fridge";
+                activeFridgeItems_FridgeMenu[i].GetComponent<Image>().sprite = transparentSprite;
+
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().totalObject = 0;
+                activeFridgeItems_FridgeMenu[i].GetComponent<ItemToolSetting>().totalObjectText.GetComponent<TextMeshProUGUI>().text = "";
             }
         }
     }
