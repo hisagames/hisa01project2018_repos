@@ -63,6 +63,7 @@
      <Compile Include="Assets\Game Assets\Scripts\Base Script\PopupNoteManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ShelfManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ShelfSetting.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\SleepManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\StopCollider.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\StopColliderManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\TimeManager.cs" />

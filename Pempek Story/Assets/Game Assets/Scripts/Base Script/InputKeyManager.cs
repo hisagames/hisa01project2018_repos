@@ -9,7 +9,8 @@ public class InputKeyManager : MonoBehaviour
         None,
         InBagMenu,
         InShelfMenu,
-        InFridgeMenu
+        InFridgeMenu,
+        InSleepConfirmationMenu
     }
 
     InputState inputState;
@@ -55,6 +56,7 @@ public class InputKeyManager : MonoBehaviour
                         ToolItemManager.instance.changeToolItemOpenState(true);
                         inputState = InputState.InShelfMenu;
                         PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
+                        PopupNoteManager.instance.changeBottomInfo(false);
                     }
                     if (Player.instance.inCollisionKey == "FridgeCollision")
                     {
@@ -62,6 +64,14 @@ public class InputKeyManager : MonoBehaviour
                         ToolItemManager.instance.changeToolItemOpenState(true);
                         inputState = InputState.InFridgeMenu;
                         PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
+                        PopupNoteManager.instance.changeBottomInfo(false);
+                    }
+                    if (Player.instance.inCollisionKey == "BedCollision")
+                    {
+                        SleepManager.instance.changeSleepConfirmationInfo(true);
+                        inputState = InputState.InSleepConfirmationMenu;
+                        PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
+                        PopupNoteManager.instance.changeBottomInfo(false);
                     }
                 }
                 break;
@@ -83,7 +93,9 @@ public class InputKeyManager : MonoBehaviour
                 {
                     bool temp = ToolItemManager.instance.changeToolItemOpenState(false);
                     if (temp)
+                    {
                         inputState = InputState.None;
+                    }
                 }
                 break;
 
@@ -97,13 +109,16 @@ public class InputKeyManager : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.DownArrow)) 
                     ToolItemManager.instance.UpdateToolItemPointer("down"); 
                 else if (Input.GetKeyDown(KeyCode.Z)) 
-                    ToolItemManager.instance.UpdateToolItemChoosenPointer(true); 
+                    ToolItemManager.instance.UpdateToolItemChoosenPointer(true);
 
                 if (Input.GetKeyDown(KeyCode.X))
                 {
                     bool temp = ToolItemManager.instance.changeToolItemOpenState(false);
                     if (temp)
+                    {
                         inputState = InputState.None;
+                        PopupNoteManager.instance.changeBottomInfo(true);
+                    }
                 }
                 break;
 
@@ -123,7 +138,19 @@ public class InputKeyManager : MonoBehaviour
                 {
                     bool temp = ToolItemManager.instance.changeToolItemOpenState(false);
                     if (temp)
+                    {
                         inputState = InputState.None;
+                        PopupNoteManager.instance.changeBottomInfo(true);
+                    }
+                }
+                break;
+
+            case InputState.InSleepConfirmationMenu:
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    SleepManager.instance.changeSleepConfirmationInfo(false);
+                    inputState = InputState.None;
+                    PopupNoteManager.instance.changeBottomInfo(true);
                 }
                 break;
         }

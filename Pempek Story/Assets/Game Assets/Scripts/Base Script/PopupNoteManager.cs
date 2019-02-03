@@ -23,4 +23,9 @@ public class PopupNoteManager : MonoBehaviour
     {
         BottomInfo.GetComponentInChildren<Text>().text = text;
     }
+
+    public void changeBottomInfo(bool state)
+    {
+        BottomInfo.SetActive(state);
+    }
 }
