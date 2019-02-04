@@ -34,7 +34,7 @@ public class InputKeyManager : MonoBehaviour
                     PlayerMovement.instance.movementState = PlayerMovement.MovementState.walkToUp;
                 else if (Input.GetKey(KeyCode.DownArrow))
                     PlayerMovement.instance.movementState = PlayerMovement.MovementState.walkToDown;
-                else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow) 
+                else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow)
                     || Input.GetKeyUp(KeyCode.DownArrow))
                     PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
                 #endregion
@@ -100,15 +100,15 @@ public class InputKeyManager : MonoBehaviour
                 break;
 
             case InputState.InShelfMenu:
-                if (Input.GetKeyDown(KeyCode.LeftArrow)) 
-                    ToolItemManager.instance.UpdateToolItemPointer("left"); 
-                else if (Input.GetKeyDown(KeyCode.RightArrow)) 
-                    ToolItemManager.instance.UpdateToolItemPointer("right"); 
-                else if (Input.GetKeyDown(KeyCode.UpArrow)) 
-                    ToolItemManager.instance.UpdateToolItemPointer("up"); 
-                else if (Input.GetKeyDown(KeyCode.DownArrow)) 
-                    ToolItemManager.instance.UpdateToolItemPointer("down"); 
-                else if (Input.GetKeyDown(KeyCode.Z)) 
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    ToolItemManager.instance.UpdateToolItemPointer("left");
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                    ToolItemManager.instance.UpdateToolItemPointer("right");
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                    ToolItemManager.instance.UpdateToolItemPointer("up");
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                    ToolItemManager.instance.UpdateToolItemPointer("down");
+                else if (Input.GetKeyDown(KeyCode.Z))
                     ToolItemManager.instance.UpdateToolItemChoosenPointer(true);
 
                 if (Input.GetKeyDown(KeyCode.X))
@@ -146,6 +146,26 @@ public class InputKeyManager : MonoBehaviour
                 break;
 
             case InputState.InSleepConfirmationMenu:
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    SleepManager.instance.updateSleepConfirmationState(!SleepManager.instance.inYesConfirmationState);
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    SleepManager.instance.updateSleepConfirmationState(!SleepManager.instance.inYesConfirmationState);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    bool temp = SleepManager.instance.inYesConfirmationState;
+                    if (!temp)
+                    {
+                        SleepManager.instance.changeSleepConfirmationInfo(false);
+                        inputState = InputState.None;
+                        PopupNoteManager.instance.changeBottomInfo(true);
+                    }
+                }
+
                 if (Input.GetKeyDown(KeyCode.X))
                 {
                     SleepManager.instance.changeSleepConfirmationInfo(false);
