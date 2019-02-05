@@ -10,7 +10,8 @@ public class InputKeyManager : MonoBehaviour
         InBagMenu,
         InShelfMenu,
         InFridgeMenu,
-        InSleepConfirmationMenu
+        InSleepConfirmationMenu,
+        InSaveConfirmationMenu
     }
 
     InputState inputState;
@@ -158,11 +159,17 @@ public class InputKeyManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
                     bool temp = SleepManager.instance.inYesConfirmationState;
-                    if (!temp)
+                    if (!temp) //no
                     {
                         SleepManager.instance.changeSleepConfirmationInfo(false);
                         inputState = InputState.None;
                         PopupNoteManager.instance.changeBottomInfo(true);
+                    }
+                    else //yes
+                    {
+                        SleepManager.instance.changeSleepConfirmationInfo(false);
+                        inputState = InputState.InSaveConfirmationMenu;
+                        SaveManager.instance.changeSaveConfirmationInfo(true);
                     }
                 }
 
@@ -171,6 +178,55 @@ public class InputKeyManager : MonoBehaviour
                     SleepManager.instance.changeSleepConfirmationInfo(false);
                     inputState = InputState.None;
                     PopupNoteManager.instance.changeBottomInfo(true);
+                }
+                break;
+
+            case InputState.InSaveConfirmationMenu:
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    SaveManager.instance.inYesConfirmationState -= 1;
+                    if (SaveManager.instance.inYesConfirmationState < 0)
+                        SaveManager.instance.inYesConfirmationState = 2;
+
+                    SaveManager.instance.updateSaveConfirmationState(SaveManager.instance.inYesConfirmationState);
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    SaveManager.instance.inYesConfirmationState = (SaveManager.instance.inYesConfirmationState + 1) % 3;
+                    SaveManager.instance.updateSaveConfirmationState(SaveManager.instance.inYesConfirmationState);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    int temp = SaveManager.instance.inYesConfirmationState;
+                    if (temp == 0) //yes
+                    {
+                        SaveManager.instance.changeSaveConfirmationInfo(false);
+                        inputState = InputState.None;
+                        // + proses sleep pindah ke next day
+                        // + proses save data dan lainnya
+                        // + still on progress
+                    }
+                    else if (temp == 1) //no
+                    {
+                        SaveManager.instance.changeSaveConfirmationInfo(false);
+                        inputState = InputState.None;
+                        // + proses sleep pindah ke next day
+                        // + still on progress
+                    }
+                    else if (temp == 2) //don't want sleep
+                    {
+                        SaveManager.instance.changeSaveConfirmationInfo(false);
+                        inputState = InputState.InSleepConfirmationMenu;
+                        SleepManager.instance.changeSleepConfirmationInfo(true);
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    SaveManager.instance.changeSaveConfirmationInfo(false);
+                    inputState = InputState.InSleepConfirmationMenu;
+                    SleepManager.instance.changeSleepConfirmationInfo(true);
                 }
                 break;
         }

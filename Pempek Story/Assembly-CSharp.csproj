@@ -61,6 +61,7 @@
      <Compile Include="Assets\Game Assets\Scripts\Base Script\PlayerMovement.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\PopupNote.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\PopupNoteManager.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\SaveManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ShelfManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ShelfSetting.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\SleepManager.cs" />
