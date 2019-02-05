@@ -165,4 +165,15 @@ public class TimeManager : MonoBehaviour
         Minutes += 30;
         PlayerPrefs.SetInt("Minutes", Minutes);
     }
+
+    public void gotoNextDayofGame()
+    {
+        PlayerPrefs.SetInt("Hours", 6);
+        PlayerPrefs.SetInt("Minutes", 0);
+        PlayerPrefs.SetInt("Day", PlayerPrefs.GetInt("Day") + 1);
+        PlayerPrefs.SetInt("DayWeek", PlayerPrefs.GetInt("DayWeek") + 1);
+        DateTimeValidate();
+
+        PlayerPrefs.Save();
+    }
 }

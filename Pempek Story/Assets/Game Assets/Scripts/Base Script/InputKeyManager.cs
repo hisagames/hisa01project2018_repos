@@ -203,7 +203,7 @@ public class InputKeyManager : MonoBehaviour
                     {
                         SaveManager.instance.changeSaveConfirmationInfo(false);
                         inputState = InputState.None;
-                        // + proses sleep pindah ke next day
+                        SleepManager.instance.playerDoSleep();
                         // + proses save data dan lainnya
                         // + still on progress
                     }
@@ -211,8 +211,7 @@ public class InputKeyManager : MonoBehaviour
                     {
                         SaveManager.instance.changeSaveConfirmationInfo(false);
                         inputState = InputState.None;
-                        // + proses sleep pindah ke next day
-                        // + still on progress
+                        SleepManager.instance.playerDoSleep();
                     }
                     else if (temp == 2) //don't want sleep
                     {

@@ -58,4 +58,10 @@ public class SleepManager : MonoBehaviour
             buttonNo.GetComponent<Text>().color = new Color(colorTextActive.r, colorTextActive.g, colorTextActive.b);
         }
     }
+
+    public void playerDoSleep()
+    {
+        TimeManager.instance.gotoNextDayofGame();
+        JumpToOtherScene.quickGoToScene("HomeIndoor01");
+    }
 }
