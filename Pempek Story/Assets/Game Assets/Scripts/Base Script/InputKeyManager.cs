@@ -11,7 +11,8 @@ public class InputKeyManager : MonoBehaviour
         InShelfMenu,
         InFridgeMenu,
         InSleepConfirmationMenu,
-        InSaveConfirmationMenu
+        InSaveConfirmationMenu,
+        InChatUIMenu
     }
 
     InputState inputState;
@@ -71,6 +72,13 @@ public class InputKeyManager : MonoBehaviour
                     {
                         SleepManager.instance.changeSleepConfirmationInfo(true);
                         inputState = InputState.InSleepConfirmationMenu;
+                        PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
+                        PopupNoteManager.instance.changeBottomInfo(false);
+                    }
+                    if (Player.instance.inCollisionKey == "NPCCollision")
+                    {
+                        ChatManager.instance.changeChatUIOpenState(true);
+                        inputState = InputState.InChatUIMenu;
                         PlayerMovement.instance.movementState = PlayerMovement.MovementState.idle;
                         PopupNoteManager.instance.changeBottomInfo(false);
                     }
@@ -226,6 +234,15 @@ public class InputKeyManager : MonoBehaviour
                     SaveManager.instance.changeSaveConfirmationInfo(false);
                     inputState = InputState.InSleepConfirmationMenu;
                     SleepManager.instance.changeSleepConfirmationInfo(true);
+                }
+                break;
+
+            case InputState.InChatUIMenu:
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    ChatManager.instance.changeChatUIOpenState(false);
+                    inputState = InputState.None;
+                    PopupNoteManager.instance.changeBottomInfo(true);
                 }
                 break;
         }

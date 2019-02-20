@@ -22,8 +22,11 @@ public class PopupNote : MonoBehaviour
             switch (popupNoteType)
             {
                 case PopupNoteType.BottomInfo:
-                    PopupNoteManager.instance.BottomInfo.SetActive(true);
-                    PopupNoteManager.instance.UpdateBottomInfoText(popupNoteString);
+                    if (popupNoteString != "")
+                    {
+                        PopupNoteManager.instance.BottomInfo.SetActive(true);
+                        PopupNoteManager.instance.UpdateBottomInfoText(popupNoteString);
+                    }
                     Player.instance.inCollisionKey = popupNoteKey;
                     break;
             }

@@ -4,6 +4,7 @@ D:/Hisa Games/PempekStory.exe
 SceneListBegin?
 Assets/Game Assets/Scenes/HomeIndoor01.unity
 Assets/Game Assets/Scenes/Street04.unity
+Assets/Game Assets/Scenes/Outdoor01.unity
 SceneListEnd?
 2a6dc175dbad38578deaa088c4176a27 Assembly-CSharp.dll:.ItemToolSetting
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -95,6 +96,7 @@ e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 a4f8057af79c9dcb83967960677bc5a1 Assembly-CSharp.dll:.PlayerMovement
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EventManager
+f1da07aae7e4d78a27fb50abc5cf5c87 Assembly-CSharp.dll:.ChatManager
 dcda5c94ab43defaa863467916e31549 Assembly-CSharp.dll:.SkillTabManager
 486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 9e61f3535f3c55760a1cedfbd114f4af UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -126,6 +128,7 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 7ca56e063bd071986fff4f513cc4f477 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 75c56f072273a668331fc982e9ad0061 Assembly-CSharp.dll:.NPCMovement
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ChatNPCSetting
 382b8ef512fa8d6108723a01b57af65b UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 d22c788799ee45d8676254eccf20e8b8 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 e233d1c5f4779b563724f49ce957b012 Assembly-CSharp.dll:.Sequences
@@ -306,7 +309,7 @@ c31ff9acb65f7a15b5c6fd77c3314d83 Vuforia.UnityExtensions.dll:Vuforia.WireframeBe
 486cd95c82d8305219c352c06b776e1f Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
 fa5ec4387ce50671a4a88af9040ae672 Assembly-CSharp.dll:.StopColliderManager
 7059606b266c24f63e352ccaa3c94336 Assembly-CSharp.dll:.NPCEmoticon
-9d570509897f343ffc42719172e3bfad Assembly-CSharp.dll:.Player
+ee2ed73331a980606d6b3bd87fce5e3a Assembly-CSharp.dll:.Player
 182e416670915c50a548c38c642db0d8 Vuforia.UnityExtensions.dll:Vuforia.AnchorBehaviour
 f35860350df72508419d9f9fcd288594 Vuforia.UnityExtensions.dll:Vuforia.AnchorInputListenerBehaviour
 182e416670915c50a548c38c642db0d8 Vuforia.UnityExtensions.dll:Vuforia.AnchorStageBehaviour

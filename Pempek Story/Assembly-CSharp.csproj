@@ -55,6 +55,8 @@
   <ItemGroup>
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\ChatManager.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\ChatNPCSetting.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\InputKeyManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ItemToolSetting.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\Player.cs" />

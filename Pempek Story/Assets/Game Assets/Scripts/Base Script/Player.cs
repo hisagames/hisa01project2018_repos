@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public int state;
     public string inCollisionKey;
+    public bool isHoldingItem;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     {
         playerInSellerTableZone = false;
         inSellerMode = false;
+        isHoldingItem = false;
     }
 
     void Update()
