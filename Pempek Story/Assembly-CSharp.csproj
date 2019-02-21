@@ -59,6 +59,7 @@
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ChatNPCSetting.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\InputKeyManager.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\ItemToolSetting.cs" />
+     <Compile Include="Assets\Game Assets\Scripts\Base Script\NPC.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\Player.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\PlayerMovement.cs" />
      <Compile Include="Assets\Game Assets\Scripts\Base Script\PopupNote.cs" />
