@@ -176,4 +176,9 @@ public class TimeManager : MonoBehaviour
 
         PlayerPrefs.Save();
     }
+
+    public int getGameTimeInMinutes()
+    {
+        return (Hours * 60) + Minutes;
+    }
 }

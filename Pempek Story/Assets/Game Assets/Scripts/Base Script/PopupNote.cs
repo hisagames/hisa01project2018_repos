@@ -6,7 +6,8 @@ public class PopupNote : MonoBehaviour
 {
     public enum PopupNoteType
     {
-        BottomInfo
+        BottomInfo,
+        NPCCollide
     };
 
     [SerializeField]
@@ -14,6 +15,9 @@ public class PopupNote : MonoBehaviour
 
     public PopupNoteType popupNoteType;
     public string popupNoteKey;
+
+    [SerializeField]
+    NPCId.id npcId; //just used if PopupNoteType == NPCCollide
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -29,6 +33,15 @@ public class PopupNote : MonoBehaviour
                     }
                     Player.instance.inCollisionKey = popupNoteKey;
                     break;
+                case PopupNoteType.NPCCollide:
+                    if (popupNoteString != "")
+                    {
+                        PopupNoteManager.instance.BottomInfo.SetActive(true);
+                        PopupNoteManager.instance.UpdateBottomInfoText(popupNoteString);
+                    }
+                    Player.instance.collideNPCId = npcId;
+                    Player.instance.inCollisionKey = popupNoteKey;
+                    break;
             }
         }
     }
@@ -40,6 +53,10 @@ public class PopupNote : MonoBehaviour
             switch (popupNoteType)
             {
                 case PopupNoteType.BottomInfo:
+                    PopupNoteManager.instance.BottomInfo.SetActive(false);
+                    Player.instance.inCollisionKey = "";
+                    break;
+                case PopupNoteType.NPCCollide:
                     PopupNoteManager.instance.BottomInfo.SetActive(false);
                     Player.instance.inCollisionKey = "";
                     break;

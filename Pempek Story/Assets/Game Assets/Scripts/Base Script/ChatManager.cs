@@ -36,14 +36,30 @@ public class ChatManager : MonoBehaviour
         {
             if(state)
             {
-                int tempNPCId = 0;
-                //its still temporary, there is 2 function coming soon in this place
-                //1 get NPCId who collide with player
-                //2 validate what chat type will be choosen to be showed depend on state or some conditions
+                ChatNPCSetting.NPCBankChat[] tempNBC = ChatNPCSetting.instance.npcBankChat;
+                NPCId.id tempNPCId = Player.instance.collideNPCId;
 
-                nameText.text = ChatNPCSetting.instance.npcBankChat[tempNPCId].name;
-                chatImageShot.sprite = ChatNPCSetting.instance.npcBankChat[tempNPCId].npcImageShot;
-                chatText.text = ChatNPCSetting.instance.npcBankChat[tempNPCId].defaultChatText;
+                nameText.text = tempNBC[(int)(tempNPCId)].name;
+                chatImageShot.sprite = tempNBC[(int)(tempNPCId)].npcImageShot;
+
+                //check or validate type text ----------------------------------------------------
+                bool tempState = false;
+                ChatNPCSetting.NPCBankChat.SpecificChat[] tempSpecificChat = tempNBC[(int)(tempNPCId)].specificChat;
+                int tempTime = TimeManager.instance.getGameTimeInMinutes();
+
+                for (int i = 0; i < tempSpecificChat.Length; i++)
+                {
+                    if(tempTime >= tempSpecificChat[i].minTime && tempTime <= tempSpecificChat[i].maxTime)
+                    {
+                        tempState = true;
+                        chatText.text = tempSpecificChat[i].text;
+                        break;
+                    }
+                }
+
+                if (!tempState)
+                    chatText.text = tempNBC[(int)(tempNPCId)].defaultChatText;
+                //--------------------------------------------------------------------------------
             }
             isChatUIOpen = state;
             ChatUI.SetActive(isChatUIOpen);

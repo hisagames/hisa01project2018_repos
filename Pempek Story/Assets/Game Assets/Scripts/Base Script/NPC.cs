@@ -4,12 +4,5 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    public enum NPCId
-    {
-        rini,
-        asako,
-        extras
-    }
-
-    public NPCId npcId;
+    public NPCId.id npcId;
 }

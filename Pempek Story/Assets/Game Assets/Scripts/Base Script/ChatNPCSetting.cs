@@ -13,8 +13,8 @@ public class ChatNPCSetting : MonoBehaviour
         public struct SpecificChat
         {
             public string text;
-            public int minTime;
-            public int maxTime;
+            public int minTime; //in minutes, example 06.30 AM is = 390 Minutes
+            public int maxTime; //in minutes
             public int day;
         }
 

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public int state;
     public string inCollisionKey;
     public bool isHoldingItem;
+    public NPCId.id collideNPCId;
 
     void Awake()
     {
