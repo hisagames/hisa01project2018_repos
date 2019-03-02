@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Game Assets/Scenes/Outdoor01.unity
+- path: Assets/Game Assets/Scenes/HomeIndoor01.unity
   isLoaded: 1
   isActive: 1
