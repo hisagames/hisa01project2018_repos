@@ -46,11 +46,15 @@ public class ToolItemManager : MonoBehaviour
     GameObject ShelfMenu;
     [SerializeField]
     GameObject FirstSelectedObjectInShelf;
+    [SerializeField]
+    GameObject[] SubShelf;
 
     [SerializeField]
     GameObject FridgeMenu;
     [SerializeField]
     GameObject FirstSelectedObjectInFridge;
+    [SerializeField]
+    GameObject[] SubFridge;
 
     [SerializeField]
     GameObject DescriptionGroupObject;
@@ -269,6 +273,17 @@ public class ToolItemManager : MonoBehaviour
         selectedObjectDescription.text = selectedObject.GetComponent<ItemToolSetting>().objectDescription;
         bagPointer.transform.position =
             new Vector3(selectedObject.transform.position.x, selectedObject.transform.position.y, bagPointer.transform.position.z);
+
+        if (uiState == UIState.ShelfMenu)
+        {
+            for (int i = 0; i < SubShelf.Length; i++)
+            {
+                SubShelf[i].gameObject.SetActive(false);
+            }
+
+            int tempShowSubShelfID = selectedObject.GetComponent<ItemToolSetting>().propertiesId / 8;
+            SubShelf[tempShowSubShelfID].gameObject.SetActive(true);
+        }
     }
 
     public void UpdateToolItemChoosenPointer(bool state)
