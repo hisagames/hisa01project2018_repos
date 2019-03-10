@@ -48,6 +48,8 @@ public class ToolItemManager : MonoBehaviour
     GameObject FirstSelectedObjectInShelf;
     [SerializeField]
     GameObject[] SubShelf;
+    [SerializeField]
+    Text subShelfActiveIdText;
 
     [SerializeField]
     GameObject FridgeMenu;
@@ -92,9 +94,9 @@ public class ToolItemManager : MonoBehaviour
                     ShelfMenu.SetActive(!isUIMenuOpen);
                     FridgeMenu.SetActive(!isUIMenuOpen);
                     selectedObject = FirstSelectedObjectInBag;
-                    bagPointer.transform.SetParent(BagMenu.transform.GetChild(4).transform);
-                    bagChoosenPointer.transform.SetParent(BagMenu.transform.GetChild(4).transform);
-                    DescriptionGroupObject.transform.position = BagMenu.transform.GetChild(7).transform.position;
+                    bagPointer.transform.SetParent(BagMenu.transform.GetChild(3).transform);
+                    bagChoosenPointer.transform.SetParent(BagMenu.transform.GetChild(3).transform);
+                    DescriptionGroupObject.transform.position = BagMenu.transform.GetChild(6).transform.position;
                 }
                 else if (uiState == UIState.ShelfMenu)
                 {
@@ -103,9 +105,9 @@ public class ToolItemManager : MonoBehaviour
                     ShelfMenu.SetActive(isUIMenuOpen);
                     FridgeMenu.SetActive(!isUIMenuOpen);
                     selectedObject = FirstSelectedObjectInShelf;
-                    bagPointer.transform.SetParent(ShelfMenu.transform.GetChild(4).transform);
-                    bagChoosenPointer.transform.SetParent(ShelfMenu.transform.GetChild(4).transform);
-                    DescriptionGroupObject.transform.position = ShelfMenu.transform.GetChild(7).transform.position;
+                    bagPointer.transform.SetParent(ShelfMenu.transform.GetChild(3).transform);
+                    bagChoosenPointer.transform.SetParent(ShelfMenu.transform.GetChild(3).transform);
+                    DescriptionGroupObject.transform.position = ShelfMenu.transform.GetChild(6).transform.position;
                 }
                 else if (uiState == UIState.FridgeMenu)
                 {
@@ -282,6 +284,7 @@ public class ToolItemManager : MonoBehaviour
             }
 
             int tempShowSubShelfID = selectedObject.GetComponent<ItemToolSetting>().propertiesId / 8;
+            subShelfActiveIdText.text = (tempShowSubShelfID + 1) + " / " + SubShelf.Length;
             SubShelf[tempShowSubShelfID].gameObject.SetActive(true);
         }
     }
