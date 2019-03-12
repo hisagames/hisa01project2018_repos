@@ -28,7 +28,7 @@ public class ToolItemSetting : MonoBehaviour
     public ItemData[] itemData;
     int maxActiveTools = 9;
     int maxActiveItems = 9;
-    int maxActiveShelf = 39;
+    int maxActiveShelf = 40;
     int maxActiveFridge = 39;
 
     public GameObject[] activeTools_BagMenu;

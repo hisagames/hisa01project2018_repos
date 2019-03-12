@@ -48,6 +48,7 @@ public class ToolItemManager : MonoBehaviour
     GameObject FirstSelectedObjectInShelf;
     [SerializeField]
     GameObject[] SubShelf;
+    int activeSubShelfID;
     [SerializeField]
     Text subShelfActiveIdText;
 
@@ -78,6 +79,7 @@ public class ToolItemManager : MonoBehaviour
         selectedObjectDescription.text = "";
         UpdateToolItemPointer("initiate");
         choosenObjectId = -1;
+        changeActiveSubShelf(0);
     }
 
     public bool changeToolItemOpenState(bool state)
@@ -242,12 +244,17 @@ public class ToolItemManager : MonoBehaviour
                     if (uiState == UIState.ShelfMenu)
                     {
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
-                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 13];
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 4];
+                        else if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+                        {
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[activeSubShelfID * 8
+                                + (selectedObject.GetComponent<ItemToolSetting>().propertiesId + 3)]; //still harcode but code is true
+                        }
                     }
                     else if (uiState == UIState.FridgeMenu)
                     {
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
-                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 13];
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 4];
                     }
                 }
                 break;
@@ -259,12 +266,18 @@ public class ToolItemManager : MonoBehaviour
                     if (uiState == UIState.ShelfMenu)
                     {
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
-                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 13];
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 4];
+                        else if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
+                        {
+
+                            selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[activeSubShelfID * 8
+                                + (selectedObject.GetComponent<ItemToolSetting>().propertiesId - 5)]; //still harcode but code is true
+                        }
                     }
                     else if (uiState == UIState.FridgeMenu)
                     {
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
-                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 13];
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 4];
                     }
                 }
                 break;
@@ -278,14 +291,10 @@ public class ToolItemManager : MonoBehaviour
 
         if (uiState == UIState.ShelfMenu)
         {
-            for (int i = 0; i < SubShelf.Length; i++)
+            if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
             {
-                SubShelf[i].gameObject.SetActive(false);
+                changeActiveSubShelf(selectedObject.GetComponent<ItemToolSetting>().propertiesId / 8);
             }
-
-            int tempShowSubShelfID = selectedObject.GetComponent<ItemToolSetting>().propertiesId / 8;
-            subShelfActiveIdText.text = (tempShowSubShelfID + 1) + " / " + SubShelf.Length;
-            SubShelf[tempShowSubShelfID].gameObject.SetActive(true);
         }
     }
 
@@ -888,6 +897,18 @@ public class ToolItemManager : MonoBehaviour
             }
         }
         #endregion
+    }
+
+    void changeActiveSubShelf(int newActiveId)
+    {
+        for (int i = 0; i < SubShelf.Length; i++)
+        {
+            SubShelf[i].gameObject.SetActive(false);
+        }
+
+        activeSubShelfID = newActiveId;
+        subShelfActiveIdText.text = (activeSubShelfID + 1) + " / " + SubShelf.Length;
+        SubShelf[activeSubShelfID].gameObject.SetActive(true);
     }
 
     void Update()
