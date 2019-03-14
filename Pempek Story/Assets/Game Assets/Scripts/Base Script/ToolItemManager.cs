@@ -20,6 +20,7 @@ public class ToolItemManager : MonoBehaviour
     GameObject bagPointer;
     [SerializeField]
     GameObject selectedObject;
+    [SerializeField]
     int selectedObjectId;
     [SerializeField]
     Sprite selectedIconObject;
@@ -32,6 +33,7 @@ public class ToolItemManager : MonoBehaviour
     GameObject bagChoosenPointer;
     [SerializeField]
     GameObject choosenObject;
+    [SerializeField]
     int choosenObjectId;
 
     [SerializeField]
@@ -293,7 +295,19 @@ public class ToolItemManager : MonoBehaviour
         {
             if (selectedObject.GetComponent<ItemToolSetting>().type == "Shelf")
             {
-                changeActiveSubShelf(selectedObject.GetComponent<ItemToolSetting>().propertiesId / 8);
+                int tempNewActiveId = selectedObject.GetComponent<ItemToolSetting>().propertiesId / 8;
+                changeActiveSubShelf(tempNewActiveId);
+
+                if (bagChoosenPointer.activeSelf)
+                {
+                    if (choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                    {
+                        if (choosenObject.GetComponent<ItemToolSetting>().propertiesId / 8 != tempNewActiveId)
+                            bagChoosenPointer.GetComponent<Image>().enabled = false;
+                        else
+                            bagChoosenPointer.GetComponent<Image>().enabled = true;
+                    }
+                }
             }
         }
     }
@@ -309,6 +323,7 @@ public class ToolItemManager : MonoBehaviour
                 choosenObjectId = choosenObject.GetComponent<ItemToolSetting>().id;
                 bagChoosenPointer.transform.position =
                     new Vector3(choosenObject.transform.position.x, choosenObject.transform.position.y, bagChoosenPointer.transform.position.z);
+                bagChoosenPointer.GetComponent<Image>().enabled = true;
             }
             else
             {
@@ -739,7 +754,10 @@ public class ToolItemManager : MonoBehaviour
         if (tempClearSelectedObject)
             clearObjectSlot(selectedObject);
         if (tempClearChoosenObject)
+        {
             clearObjectSlot(choosenObject);
+            bagChoosenPointer.GetComponent<Image>().enabled = true;
+        }
 
         PlayerPrefs.SetInt("active" + choosenObject.GetComponent<ItemToolSetting>().type + "Id" + choosenObject.GetComponent<ItemToolSetting>().propertiesId,
             choosenObject.GetComponent<ItemToolSetting>().id);
