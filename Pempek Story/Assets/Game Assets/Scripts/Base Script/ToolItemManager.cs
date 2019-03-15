@@ -60,6 +60,9 @@ public class ToolItemManager : MonoBehaviour
     GameObject FirstSelectedObjectInFridge;
     [SerializeField]
     GameObject[] SubFridge;
+    int activeSubFridgeID;
+    [SerializeField]
+    Text subFridgeActiveIdText;
 
     [SerializeField]
     GameObject DescriptionGroupObject;
@@ -82,6 +85,7 @@ public class ToolItemManager : MonoBehaviour
         UpdateToolItemPointer("initiate");
         choosenObjectId = -1;
         changeActiveSubShelf(0);
+        changeActiveSubFridge(0);
     }
 
     public bool changeToolItemOpenState(bool state)
@@ -120,9 +124,9 @@ public class ToolItemManager : MonoBehaviour
                     ShelfMenu.SetActive(!isUIMenuOpen);
                     FridgeMenu.SetActive(isUIMenuOpen);
                     selectedObject = FirstSelectedObjectInFridge;
-                    bagPointer.transform.SetParent(FridgeMenu.transform.GetChild(4).transform);
-                    bagChoosenPointer.transform.SetParent(FridgeMenu.transform.GetChild(4).transform);
-                    DescriptionGroupObject.transform.position = FridgeMenu.transform.GetChild(7).transform.position;
+                    bagPointer.transform.SetParent(FridgeMenu.transform.GetChild(3).transform);
+                    bagChoosenPointer.transform.SetParent(FridgeMenu.transform.GetChild(3).transform);
+                    DescriptionGroupObject.transform.position = FridgeMenu.transform.GetChild(6).transform.position;
                 }
 
                 selectedObjectId = selectedObject.GetComponent<ItemToolSetting>().id;
@@ -257,6 +261,11 @@ public class ToolItemManager : MonoBehaviour
                     {
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
                             selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId - 4];
+                        else if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+                        {
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[activeSubFridgeID * 8
+                                + (selectedObject.GetComponent<ItemToolSetting>().propertiesId + 3)]; //still harcode but code is true
+                        }
                     }
                 }
                 break;
@@ -271,7 +280,6 @@ public class ToolItemManager : MonoBehaviour
                             selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 4];
                         else if (selectedObject.GetComponent<ItemToolSetting>().type == "Tools")
                         {
-
                             selectedObject = toolItemSetting.activeShelfTools_ShelfMenu[activeSubShelfID * 8
                                 + (selectedObject.GetComponent<ItemToolSetting>().propertiesId - 5)]; //still harcode but code is true
                         }
@@ -280,6 +288,11 @@ public class ToolItemManager : MonoBehaviour
                     {
                         if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
                             selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[selectedObject.GetComponent<ItemToolSetting>().propertiesId + 4];
+                        else if (selectedObject.GetComponent<ItemToolSetting>().type == "Items")
+                        {
+                            selectedObject = toolItemSetting.activeFridgeItems_FridgeMenu[activeSubFridgeID * 8
+                                + (selectedObject.GetComponent<ItemToolSetting>().propertiesId - 5)]; //still harcode but code is true
+                        }
                     }
                 }
                 break;
@@ -301,6 +314,25 @@ public class ToolItemManager : MonoBehaviour
                 if (bagChoosenPointer.activeSelf)
                 {
                     if (choosenObject.GetComponent<ItemToolSetting>().type == "Shelf")
+                    {
+                        if (choosenObject.GetComponent<ItemToolSetting>().propertiesId / 8 != tempNewActiveId)
+                            bagChoosenPointer.GetComponent<Image>().enabled = false;
+                        else
+                            bagChoosenPointer.GetComponent<Image>().enabled = true;
+                    }
+                }
+            }
+        }
+        else if (uiState == UIState.FridgeMenu)
+        {
+            if (selectedObject.GetComponent<ItemToolSetting>().type == "Fridge")
+            {
+                int tempNewActiveId = selectedObject.GetComponent<ItemToolSetting>().propertiesId / 8;
+                changeActiveSubFridge(tempNewActiveId);
+
+                if (bagChoosenPointer.activeSelf)
+                {
+                    if (choosenObject.GetComponent<ItemToolSetting>().type == "Fridge")
                     {
                         if (choosenObject.GetComponent<ItemToolSetting>().propertiesId / 8 != tempNewActiveId)
                             bagChoosenPointer.GetComponent<Image>().enabled = false;
@@ -927,6 +959,18 @@ public class ToolItemManager : MonoBehaviour
         activeSubShelfID = newActiveId;
         subShelfActiveIdText.text = (activeSubShelfID + 1) + " / " + SubShelf.Length;
         SubShelf[activeSubShelfID].gameObject.SetActive(true);
+    }
+
+    void changeActiveSubFridge(int newActiveId)
+    {
+        for (int i = 0; i < SubFridge.Length; i++)
+        {
+            SubFridge[i].gameObject.SetActive(false);
+        }
+
+        activeSubFridgeID = newActiveId;
+        subFridgeActiveIdText.text = (activeSubFridgeID + 1) + " / " + SubFridge.Length;
+        SubFridge[activeSubFridgeID].gameObject.SetActive(true);
     }
 
     void Update()
